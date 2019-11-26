@@ -1,0 +1,156 @@
+body{
+	margin:0px;
+	background-color: lightGrey;
+}
+
+#top-nav{
+	direction: ltr;
+    color: #ccc;
+    font-size: 13px;
+    font-weight: 400;
+    height: 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 600px;
+    z-index: 99999;
+    background: #23282d;
+}
+
+ul#left-ul{
+	width: 30%;
+}
+
+ul li{
+	display: inline;
+	padding-right: 3%;
+}
+
+.left-ul-li:hover{
+	color: lightBlue;
+}
+
+#searchform{
+	float: right;
+	display: inline;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+
+#search-button:hover{
+	color:lightBlue;
+	background: #2b3843;
+}
+
+.navigation-div{
+	background-color: #2b3843;
+	height: 25%;
+	width: 100%;
+	position: fixed;
+}
+
+header{
+	font-family: "Times New Roman", Times, serif;
+	color: lightGrey;
+	font-weight: bold;
+	margin-left: 30px;
+}
+
+nav{
+  overflow: hidden;
+  margin-left: 40px;
+}
+
+nav a {
+  float:left;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  background-color: darkGrey;
+  border: solid 2px darkGrey;
+  border-radius: 15px;
+  border-color: white;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 15px;  
+  border: solid 2px white;
+  outline: none;
+  color: darkGrey;
+  padding: 14px 16px;
+  margin: 0;
+  background-color: white;
+  border-radius: 15px;
+}
+
+nav a:hover, .dropdown:hover .dropbtn {
+  background-color: darkGrey;
+  color: white;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  z-index: 1;
+  color: darkGrey;
+  border-radius: 15px;
+  padding:1px;
+  border: solid 1px white;
+  box-shadow: 5px 5px 3px #aaaaaa;
+}
+
+.dropdown-content a {
+  float: none;
+  color: darkGrey;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-radius: 15px;
+  text-align: center;
+  margin-top:1px;
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+@media screen and (max-width: 480px) {
+  nav>a{
+    width:90%;	
+  }
+
+  .dropdown, .dropbtn, .home{
+    width:99%;
+  }
+  .dropdown-content{
+	width:94%;
+  }
+  .dropdown-content a{
+	margin:2px;
+  }
+  .home, .aboutme, .mouse, .keyboard{
+	margin-top:2px;
+    width: 88%;
+	margin-bottom:2px;
+  }
+  .jquery{
+	width: 88%;
+  }
+}

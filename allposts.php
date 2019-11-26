@@ -9,7 +9,7 @@
 <body>
 	<?php 
 	  $path = "";
-	  $thisPage = "home";
+	  $thisPage = "allposts";
 	  include 'templateHeader.php';
 	?>
 
