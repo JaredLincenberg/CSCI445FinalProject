@@ -1,64 +1,46 @@
-<hr>
-  <nav>
-    <ul>
-      <li class= "<?php if ($CURRENT_PAGE == "index") {?>currentPage<?php }?>">
-        <a  href="<?php echo $Depth?>index.php">Home</a>
-      </li>
-<!--       <li class = "<?php if ($CURRENT_PAGE == "aboutme") {?>currentPage<?php }?>">
-        <a href="<?php echo $Depth?>aboutme/aboutme.php">About Me</a>
-      </li>
-      <li class="dropDown">
-        <a href="#">CSS Basics</a>
-        <ul class="dropDown-content">
-          <li><a href="<?php echo $Depth?>csstutorials/turtlecoders.html">Turtle Coders</a></li>
-          <li><a href="<?php echo $Depth?>csstutorials/posEx.html">Position Example</a></li>
-          <li><a href="<?php echo $Depth?>csstutorials/floatExBoxes.html">Box Model</a></li>
-          <li><a href="<?php echo $Depth?>csstutorials/clearEx.html">Float and Clear</a></li>
-        </ul>
-      </li> 
-      <li class="dropDown <?php if ($CURRENT_PAGE == "jsMouse" || $CURRENT_PAGE == "jskeyboard") {?>currentPage<?php }?>">
-        <a href="#">Javascript Basics</a>
-        <ul class="dropDown-content">
-          <li class="<?php if ($CURRENT_PAGE == "jsMouse") {?>currentPage<?php }?>">
-            <a href="<?php echo $Depth?>javascript/jsmouse.php">JS Mouse</a>
-          </li>
-          <li class="<?php if ($CURRENT_PAGE == "jskeyboard") {?>currentPage<?php }?>">
-            <a href="<?php echo$Depth?>javascript/jskeyboard.php">JS Keyboard</a>
-          </li>
-        </ul>
-      </li>
-      <li class="<?php if ($CURRENT_PAGE == "quiz") {?>currentPage<?php }?>">
-        <a href="<?php echo $Depth?>jquery/quiz.php">JQuery</a>
-      </li>
-      <li class="dropDown <?php if (FALSE) {?>currentPage<?php }?>">
-        <a href="#">PHP</a>
-        <ul class="dropDown-content">
-          <li class="<?php if ($CURRENT_PAGE == "form") {?>currentPage<?php }?>">
-            <a href="<?php echo $Depth?>php/form.php">Form</a>
-          </li>
-          <li class="<?php if ($CURRENT_PAGE == "io") {?>currentPage<?php }?>">
-            <a href="<?php echo $Depth?>php/io.php">IO</a>
-          </li>
-          <li class="<?php if ($CURRENT_PAGE == "vieworders") {?>currentPage<?php }?>">
-            <a href="<?php echo $Depth?>php/vieworders.php">View Orders</a>
-          </li>
-        </ul>
-      </li>
 
-      <li class="dropDown <?php if (FALSE) {?>currentPage<?php }?>">
-        <a href="#">MySQL</a>
-        <ul class="dropDown-content">
-          <li class="<?php if ($CURRENT_PAGE == "orderform") {?>currentPage<?php }?>">
-            <a href="<?php echo $Depth?>mysql/orderform.php">Shop</a>
-          </li>
-          <li class="<?php if ($CURRENT_PAGE == "allorders") {?>currentPage<?php }?>">
-            <a href="<?php echo $Depth?>mysql/allorders.php">All Orders</a>
-          </li>
-        </ul>
-      </li> -->
+<!--log in bar-->
+<div id="top-nav">
+	
+	<form id="searchform" method="GET">
+		<label for="search" style="color:black">Search</label>
+		<input id="search" name="search" type="text" value="" maxlength="150">
+		<input type="submit" id="search-button" value="Search">
+	</form>
 
+	<ul id="left-ul" style="list-style-type:none">
+		<li class="left-ul-li">
+			<a id="login" herf="login.php">Log in</a>
+		</li>
+		<li class="left-ul-li">
+			<a id="signin" herf="signin.php">Sign in</a>
+		</li>
+		<li class="left-ul-li">
+			<a id="logout">Log out</a>		
+		</li>
+	</ul>
+</div>
 
+<!--navagation bar-->
+<div class="navigation-div">
+<header>
+	<br><h1>MINER -- THE BEST ONLINE VIRTUAL “CORKBOARDS”</h1>
+	</header>
 
-    </ul>
-  </nav>
-<hr>
+	<nav class="navagation-bar">
+	    <?php 
+		  $homepath = $path."index.php";
+		  $mypostpath = $path."myposts.php";
+		  $allpostpath = $path."allposts.php";
+	    ?>
+		<a class="home" 
+		<?php if ($thisPage=="home") echo "style=\"background-color: darkRed;color: white;\""; ?>
+		href="<?php echo $homepath; ?>">Home</a>
+		<a class="myposts" 
+		<?php if ($thisPage=="myposts") echo "style=\"background-color: darkRed;color: white;\""; ?>
+		href="<?php echo $mypostpath; ?>">My Posts</a>
+		<a class="allposts" 
+		<?php if ($thisPage=="allposts") echo "style=\"background-color: darkRed;color: white;\""; ?>
+		href="<?php echo $allpostpath; ?>">All Posts</a>
+	</nav>
+</div>

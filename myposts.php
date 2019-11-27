@@ -9,9 +9,10 @@
 <body>
 	<?php 
 	  $path = "";
-	  $thisPage = "home";
+	  $thisPage = "myposts";
 	  include 'templateHeader.php';
 	?>
+
 	
 </body>
 </html>
