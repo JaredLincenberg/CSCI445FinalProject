@@ -7,5 +7,6 @@
 	<?php
 		include('templateHeader.php');
 	?>
+	
 </body>
 </html>
