@@ -10,10 +10,10 @@
 
 	<ul id="left-ul" style="list-style-type:none">
 		<li class="left-ul-li">
-			<a id="login" herf="login.php">Log in</a>
+			<a id="login" href="./login.php">Log in</a>
 		</li>
 		<li class="left-ul-li">
-			<a id="signin" herf="signin.php">Sign in</a>
+			<a id="signup" href="signup.php">Sign up</a>
 		</li>
 		<li class="left-ul-li">
 			<a id="logout">Log out</a>		

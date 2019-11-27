@@ -3,6 +3,17 @@ body{
 	background-color: lightGrey;
 }
 
+/* Body Content */
+main {
+  position: absolute;
+  top: 35%;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+
+/* Navigation */
+
 #top-nav{
 	direction: ltr;
     color: #ccc;
@@ -31,6 +42,8 @@ ul li{
 	color: lightBlue;
 }
 
+
+/* Search Bar Navigation*/
 #searchform{
 	float: right;
 	display: inline;
@@ -50,6 +63,8 @@ ul li{
 	position: fixed;
 }
 
+
+/* Header */
 header{
 	font-family: "Times New Roman", Times, serif;
 	color: lightGrey;
@@ -57,6 +72,8 @@ header{
 	margin-left: 30px;
 }
 
+
+/* Nav Bar */
 nav{
   overflow: hidden;
   margin-left: 40px;
@@ -128,6 +145,26 @@ nav a:hover, .dropdown:hover .dropbtn {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+
+/* Entry Form Style */
+.entry-form{
+
+}
+
+/* Log In Style */
+form#log-in{
+  display: block;
+  align-content: center;
+}
+
+fieldset.user-id-form{
+  display: block;
+}
+fieldset.user-id-form label{
+  display: block;
+  text-align: center;
 }
 
 
