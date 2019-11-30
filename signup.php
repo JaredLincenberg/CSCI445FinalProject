@@ -11,6 +11,7 @@
 	  $path = "";
 	  $thisPage = "signup";
 	  include 'templateHeader.php';
+	  // password_hash($_POST["password"], PASSWORD_BCRYPT, $options );
 	?>
 	<!-- Body of Web Page -->
 	<main>
