@@ -8,7 +8,7 @@
 </head>
 <body>
 	<?php 
-	session_start();
+		session_start();
 		$path = "";
 		$thisPage = "login";
 		include 'templateHeader.php';

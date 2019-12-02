@@ -86,10 +86,10 @@ nav a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  background-color: darkGrey;
-  border: solid 2px darkGrey;
+  background-color: #1DA1F2;
+  border: solid 2px #1DA1F2;
   border-radius: 15px;
-  border-color: white;
+  border-color: darkGrey;
   margin-left: 2px;
   margin-right: 2px;
 }
@@ -103,7 +103,7 @@ nav a {
   font-size: 15px;  
   border: solid 2px white;
   outline: none;
-  color: darkGrey;
+  color: #1DA1F2;
   padding: 14px 16px;
   margin: 0;
   background-color: white;

@@ -13,46 +13,86 @@
 	  include 'templateHeader.php';
 	  // password_hash($_POST["password"], PASSWORD_BCRYPT, $options );
 	?>
+	
 	<!-- Body of Web Page -->
 	<main>
 		<!-- Sign Up Form -->
-		<form class="entry-form" id="sign-up" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+		<form class="entry-form" id="sign-up" action="signup_submit.php" method="post">
 			<!-- Get information about User -->
 			<fieldset class="user-id-form">
 
-				<label for="FirstName"> First Name
-					<input type="text" name="FirstName" required="required">
-				</label>
+				<label for="firstname">First Name:
+				<input type="text" name="firstname" id="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
+				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>"> 
+				<span class="error">*</span></label>
+				<br>
 
-				<label for="LastName"> Last Name
-					<input type="text" name="LastName" required="required">
-				</label>
+				<label for="lastname">Last Name: 
+				<input type="text" name="lastname" id="lastname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
+				required value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'];?>">
+				<span class="error">*</span></label>
+				<br>
 
-				<label for="Email"> Email
-					<input type="text" name="Email" required="required">
-				</label>
+				<label for="email">E-mail: 
+				<input type="email" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+				value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
+				<span class="error">*</span></label> 
+			    <br>
 
-				<label for="confirm_Email"> Confirm Email
-					<input type="text" name="confirm_Email" required="required">
-				</label>
+				<label for="confirm_Email"> Confirm Email 
+				<input type="email" name="confirm_email" id="confirm_email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
+				value="<?php if(isset($_POST['confirm_email'])) echo $_POST['confirm_email'];?>">
+				<span class="error">*</span></label> 
+			    <br>
 
 				<label for="password"> Password
-					<input type="password" name="password" required="required">
+					<input type="password" name="password" required="required" id="password"
+					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+					title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+				<span class="error">*</span></label>
 				</label>
-
+				<br>
+				
 				<label for="retype_password"> Retype Password
-					<input type="password" name="retype_password" required="required">
-				</label>
-
+				<input type="password" required="required" Password: name="retype_password" id="retype_password">
+				<span class="error">*</span></label>
+				<br>
 			</fieldset>
 			<fieldset>
-
-				<input type="submit" name="Sign_up" value="Sign Up">
-
+			  <p><span class="error">* required field</span></p>
+			  <label for="reset" style="display:none;" >Reset:</label>
+			  <input class="button" type="reset" name="reset" id="reset" value="Reset">  
+			  <input class="button" type="submit" name="submit" value="submit" onclick="return checkform()">  
 			</fieldset>
 		</form>
 	</main>
 
+<script>
+
+//check if confirm information are same.
+function checkform() {
+	var validinput = true;
+	var email1 = document.getElementById("email").value;
+	var email2 = document.getElementById("confirm_email").value;
+	if (email1 === email2){
+        validinput = true;
+    } else {
+		alert("Email and confirm email must be the same!");
+        validinput = false;
+    }
 	
+	var password1 = document.getElementById("password").value;
+	var password2 = document.getElementById("retype_password").value;
+	if (password1 === password2){
+        validinput = true;
+    } else {
+		alert("Password and confirm password must be the same!");
+        validinput = false;
+    }
+	return validinput;
+	
+
+}
+</script>	
 </body>
 </html>
