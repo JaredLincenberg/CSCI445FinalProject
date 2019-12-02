@@ -20,7 +20,13 @@
 		<form class="entry-form" id="sign-up" action="signup_submit.php" method="post">
 			<!-- Get information about User -->
 			<fieldset class="user-id-form">
-
+				<!--
+				<label for="username">User Name:
+				<input type="text" name="username" id="username" pattern="[A-Za-z0-9 ']{1,50}" title="Letters, number, spaces, and apostrophes only"
+				required value="<?php if(isset($_POST['username'])) echo $_POST['username'];?>"> 
+				<span class="error">*</span></label>
+				<br> -->
+				
 				<label for="firstname">First Name:
 				<input type="text" name="firstname" id="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
 				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>"> 
@@ -47,8 +53,8 @@
 
 				<label for="password"> Password
 					<input type="password" name="password" required="required" id="password"
-					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-					title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" 
+					title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters">
 				<span class="error">*</span></label>
 				</label>
 				<br>
@@ -89,6 +95,9 @@ function checkform() {
 		alert("Password and confirm password must be the same!");
         validinput = false;
     }
+	
+	//TODO: check user name exists
+	
 	return validinput;
 	
 
