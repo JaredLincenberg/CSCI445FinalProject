@@ -77,11 +77,7 @@ function checkform() {
         validinput = false;
     }
 	
-	//TODO: check user name exists
-	
 	return validinput;
-	
-
 }
 </script>	
 </body>

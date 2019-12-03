@@ -2,6 +2,7 @@
 $firstName = $_POST['firstname'];
 $lastName = $_POST['lastname'];
 $email = $_POST['email'];
+$message = "You have successfully signed up!";
 $options = [
 	'cost' => 12,
 ];
@@ -16,16 +17,21 @@ if ($mysqli->connect_errno) {
 }
 $dup = true;
 //check customer exists
-$querycheck = "SELECT * FROM USERS WHERE firstname= ? AND lastName = ? ";
+$querycheck = "SELECT * FROM USERS WHERE firstname= ? AND lastName = ? OR email = ?";
 $stmt = $mysqli->prepare( $querycheck );
-$stmt->bind_param( "ss", $fname, $lname );
+$stmt->bind_param( "sss", $fname, $lname, $emai );
 $fname = $firstName;
 $lname = $lastName;
+$emai = $email;
 $stmt->execute();
 $res = $stmt->get_result();
 $row=mysqli_fetch_array($res);
 if(is_null($row[0])) {
 	$dup = false;
+
+}
+else{
+	$message = "You have registered before.";
 }
 $stmt->close();
 
@@ -58,14 +64,14 @@ $mysqli->close();
 	<?php 
 	  $path = "";
 	  $thisPage = "signup";
-	  include 'header_afterloggedin.php';
+	  include 'templateheader.php';
 	  // password_hash($_POST["password"], PASSWORD_BCRYPT, $options );
 	?>
 		
 	<!-- Body of Web Page -->
 	<main>
-		<h2>You have successfully signed up!</h2>
-		<p class="tab" style="color:darkGreen;">Click here to <a style="color:red" href="login.php">sign in</a>.</p>
+		<h2><?php echo $message;?></h2>
+		<p class="tab" style="color:darkGreen;">Click here to <a style="color:red" href="login.php">log in</a>.</p>
 		<p class="tab" style="color:darkGreen;">Go back to <a style="color:red" href="index.php">home page</a>.</p><br>
 	</main>
 </body>
