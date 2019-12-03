@@ -80,24 +80,6 @@
 			</fieldset>
 		</form>
 	</main>
-	
-<script>
-
-//check if confirm information are same.
-function checkform() {
-	//TODO verify old password and update new password
-	var validinput = true;	
-	var password1 = document.getElementById("password").value;
-	var password2 = document.getElementById("retype_password").value;
-	if (password1 === password2){
-        validinput = true;
-    } else {
-		alert("Password and confirm password must be the same!");
-        document.getElementById("change-password").reset();
-    }
-	
-	return validinput;
-}
-</script>	
+		
 </body>
 </html>

@@ -61,21 +61,21 @@
 				<label for="FirstName"> First Name
 					<input type="text" name="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
 				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>">
-				</label>
+				</label><br>
 
 				<label for="LastName"> Last Name
 					<input type="text" name="lastname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only" required value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'];?>">
-				</label>
+				</label><br>
 
 				<label for="Email"> Email
 					<input type="email" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
 					value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
-				</label>
+				</label><br>
 				
 			</fieldset>
 			<fieldset>
 				<input type="hidden" name="time" value="<?php echo time();?>">
-				<input type="submit" name="submit" id="submit" value="Reset Password">
+				<input style="margin-left:40%; width:20%;" type="submit" name="submit" id="submit" value="Reset Password">
 				<p>* By clicking the reset password button, a temporary password will be sent to your email.</p>
 			</fieldset>
 		</form>

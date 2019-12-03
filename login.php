@@ -3,13 +3,15 @@
 	if (isset($_POST['submit']))  {
 		$firstname=$_POST['firstname'];
 		$lastname=$_POST['lastname'];
+		$email = $_POST['email'];
 		$password=$_POST['password'];
 		
-		$querycheck="SELECT password FROM USERS WHERE FirstName=? AND LastName=?";
+		$querycheck="SELECT password FROM USERS WHERE FirstName=? AND LastName=? AND Email=?";
 		$stmt = $mysqli->prepare( $querycheck );
-		$stmt->bind_param( "ss", $fname, $lname);
+		$stmt->bind_param( "sss", $fname, $lname, $emai);
 		$fname = $firstname;
 		$lname = $lastname;
+		$emai = $email;
 		$stmt->execute();
 		$res = $stmt->get_result();
 		$row=mysqli_fetch_array($res);
@@ -26,7 +28,7 @@
 		}
 		else{
 			$valid = false;
-			$message = "The user name does not exist!";
+			$message = "The user does not exist!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		$stmt->close();
@@ -60,25 +62,26 @@
 	<!-- Body of Web Page -->
 	<main>
 		<!-- Log In Form -->
+		<h2>Log in</h2>
 		<form class="entry-form" id="log-in"  method="post">
 			<fieldset class="user-id-form">
 				<label for="FirstName"> First Name
 					<input type="text" name="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
 				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>">
-				</label>
+				</label><br>
 
 				<label for="LastName"> Last Name
 					<input type="text" name="lastname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only" required value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'];?>">
-				</label>
+				</label><br>
 
 				<label for="Email"> Email
 					<input type="email" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
 					value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
-				</label>
+				</label><br>
 
 				<label for="password"> Password
 					<input type="password" name="password" required="required">
-				</label>
+				</label><br>
 
 				
 			</fieldset>
