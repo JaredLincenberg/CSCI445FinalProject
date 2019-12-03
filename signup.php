@@ -17,7 +17,7 @@
 	<!-- Body of Web Page -->
 	<main>
 		<!-- Sign Up Form -->
-		<form class="entry-form" id="sign-up" action="login_submit.php" method="post">
+		<form class="entry-form" id="sign-up" action="signup_submit.php" method="post">
 			<!-- Get information about User -->
 			<fieldset class="user-id-form">
 				

@@ -1,3 +1,27 @@
+<?php
+	include 'connect.php';
+	$exist = "false";
+	if(isset($_POST['Log_In'])) {
+		$exist = "true";
+		$firstname=$_POST['firstname'];
+		$lastname=$_POST['lastname'];
+		$password=$_POST['password'];
+		
+		$querycheck="SELECT * FROM USERS WHERE FirstName=? AND LastName=? AND Password=?";
+		$stmt = $mysqli->prepare( $querycheck );
+		$stmt->bind_param( "sss", $fname, $lname, $pword );
+		$fname = $firstname;
+		$lname = $lastname;
+		$pword = $password;
+		$stmt->execute();
+		$res = $stmt->get_result();
+		$row=mysqli_fetch_array($res);
+		if(!is_null($row[0])) {
+			$exist = "true";
+		}
+		$stmt->close();
+	}
+?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -12,9 +36,11 @@
 		$path = "";
 		$thisPage = "login";
 		include 'templateHeader.php';
-		include 'connect.php';
+
 	?>
 	
+
+
   	<!-- Test Account
   		J
   		L
@@ -47,11 +73,24 @@
 			</fieldset>
 			<fieldset>
 				<input type="hidden" name="time" value="<?php echo time();?>">
-				<input type="submit" name="Log_In" value="Log In">
+				<input type="submit" name="Log_In" value="Log In" id="Log_In" onclick="return checkform()">
 				<span> <a href="forget_password.php">Forgot password?</a></span>
 			</fieldset>
 		</form>
+
 	</main>
 	
+<script>
+function checkform() {
+	var exist = <?php echo $exist; ?>;
+	if(exist){
+		return true;
+	}
+	else{
+		alert("The user name and password doesn't match!");
+		return false;
+	}
+}
+</script>	
 </body>
 </html>

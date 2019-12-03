@@ -37,7 +37,7 @@
 			<fieldset>
 				<input type="hidden" name="time" value="<?php echo time();?>">
 				<input type="submit" name="reset" value="Reset Password">
-				<p>* By clicking the reset button, a temporary password will be sent to your email.</p>
+				<p>* By clicking the reset password button, a temporary password will be sent to your email.</p>
 			</fieldset>
 		</form>
 	</main>
