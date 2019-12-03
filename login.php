@@ -1,26 +1,37 @@
 <?php
 	include 'connect.php';
-	$exist = "false";
-	if(isset($_POST['Log_In'])) {
-		$exist = "true";
+	if (isset($_POST['submit']))  {
 		$firstname=$_POST['firstname'];
 		$lastname=$_POST['lastname'];
 		$password=$_POST['password'];
 		
-		$querycheck="SELECT * FROM USERS WHERE FirstName=? AND LastName=? AND Password=?";
+		$querycheck="SELECT password FROM USERS WHERE FirstName=? AND LastName=?";
 		$stmt = $mysqli->prepare( $querycheck );
-		$stmt->bind_param( "sss", $fname, $lname, $pword );
+		$stmt->bind_param( "ss", $fname, $lname);
 		$fname = $firstname;
 		$lname = $lastname;
-		$pword = $password;
 		$stmt->execute();
 		$res = $stmt->get_result();
 		$row=mysqli_fetch_array($res);
 		if(!is_null($row[0])) {
-			$exist = "true";
+			$hash = $row[0];
+			$valid = password_verify ( $password, $hash );
+			if($valid){
+				header("Location: login_submit.php");
+			}
+			else{
+				$message = "The password is incorrect!";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+			}
+		}
+		else{
+			$valid = false;
+			$message = "The user name does not exist!";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		$stmt->close();
 	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -49,7 +60,7 @@
 	<!-- Body of Web Page -->
 	<main>
 		<!-- Log In Form -->
-		<form class="entry-form" id="log-in" action="login_submit.php" method="post">
+		<form class="entry-form" id="log-in"  method="post">
 			<fieldset class="user-id-form">
 				<label for="FirstName"> First Name
 					<input type="text" name="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
@@ -73,24 +84,12 @@
 			</fieldset>
 			<fieldset>
 				<input type="hidden" name="time" value="<?php echo time();?>">
-				<input type="submit" name="Log_In" value="Log In" id="Log_In" onclick="return checkform()">
-				<span> <a href="forget_password.php">Forgot password?</a></span>
+				<input type="submit" name="submit" value="Log In" id="submit">
+				<span sytle="float:right;"> <a href="forget_password.php">Forgot password?</a></span>
 			</fieldset>
 		</form>
 
 	</main>
-	
-<script>
-function checkform() {
-	var exist = <?php echo $exist; ?>;
-	if(exist){
-		return true;
-	}
-	else{
-		alert("The user name and password doesn't match!");
-		return false;
-	}
-}
-</script>	
+		
 </body>
 </html>
