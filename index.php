@@ -8,10 +8,25 @@
 </head>
 <body>
 	<?php 
-	  $path = "";
-	  $thisPage = "home";
-	  include 'templateHeader.php';
+		session_start();
+		$path = "";
+		$thisPage = "home";
+		include 'templateHeader.php';
 	?>
 	
+
+	<?php
+		if (isset($_SESSION["passwordVerified"])) {
+			if ($_SESSION["passwordVerified"] == TRUE) {
+				echo "Loggedin";
+			}
+			else{
+				echo "Not loggedin";
+			}
+		}
+		else{
+			echo "Not set";
+		}
+	?>
 </body>
 </html>

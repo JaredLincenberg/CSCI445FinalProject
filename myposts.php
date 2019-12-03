@@ -13,6 +13,20 @@
 	  include 'templateHeader.php';
 	?>
 
+	<?php
+		if (isset($_SESSION["passwordVerified"])) {
+			echo var_dump($_SESSION);
+			if ($_SESSION["passwordVerified"] == TRUE) {
+				echo "Loggedin";
+			}
+			else{
+				echo "Not loggedin";
+			}
+		}
+		else{
+			echo "Not set";
+		}
+	?>
 	
 </body>
 </html>
