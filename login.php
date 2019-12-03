@@ -12,8 +12,7 @@
 		$path = "";
 		$thisPage = "login";
 		include 'templateHeader.php';
-
-		include 'dbConnect.php';
+		include 'connect.php';
 	?>
 	
   	<!-- Test Account
@@ -49,11 +48,10 @@
 			<fieldset>
 				<input type="hidden" name="time" value="<?php echo time();?>">
 				<input type="submit" name="Log_In" value="Log In">
-				<input type="submit" name="Forgot_Password" value="Forgot Password">
+				<span> <a href="forget_password.php">Forgot password?</a></span>
 			</fieldset>
 		</form>
 	</main>
-
 	
 </body>
 </html>

@@ -58,15 +58,13 @@ $mysqli->close();
 	<?php 
 	  $path = "";
 	  $thisPage = "signup";
-	  include 'templateHeader.php';
+	  include 'header_afterloggedin.php';
 	  // password_hash($_POST["password"], PASSWORD_BCRYPT, $options );
 	?>
 		
 	<!-- Body of Web Page -->
 	<main>
-		<h2>You have successfully signed up!</h2>
-		<p class="tab" style="color:darkGreen;">Click here to <a style="color:red" href="login.php">sign in</a>.</p>
-		<p class="tab" style="color:darkGreen;">Go back to <a style="color:red" href="index.php">home page</a>.</p><br>
+		<h2>You have successfully logged in!</h2>
 	</main>
 </body>
 </html>

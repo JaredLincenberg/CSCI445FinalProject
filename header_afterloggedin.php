@@ -13,12 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
 	</form>
 
 	<ul id="left-ul" style="list-style-type:none">
-		<li class="left-ul-li">
-			<a id="login" href="./login.php">Log in</a>
-		</li>
-		<li class="left-ul-li">
-			<a id="signup" href="signup.php">Sign up</a>
-		</li>
+		<span style="color:blue">user name place holder</span>
 		<li class="left-ul-li">
 			<a id="logout" href="logout_submit.php">Log out</a>		
 		</li>
