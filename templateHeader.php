@@ -16,7 +16,7 @@
 			<a id="signup" href="signup.php">Sign up</a>
 		</li>
 		<li class="left-ul-li">
-			<a id="logout">Log out</a>		
+			<a id="logout" href="logout_submit.php">Log out</a>		
 		</li>
 	</ul>
 </div>

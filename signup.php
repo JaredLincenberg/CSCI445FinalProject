@@ -61,7 +61,9 @@
 				
 				<label for="retype_password"> Retype Password
 				<input type="password" required="required" Password: name="retype_password" id="retype_password">
-				<span class="error">*</span></label>
+				<span class="error">*</span>
+				</label>
+				
 				<br>
 			</fieldset>
 			<fieldset>

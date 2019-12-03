@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS follower (
 );
 --
 INSERT INTO users (FirstName, LastName, Email, Password) 
-VALUES("Jared","Lincenberg","Jaredlincenberg@mymail.mines.edu","$2y$12$u6LIqo6JcUArvX.8a2/jGuTWntBMBDhW.zYymyT87K1iuKcf/ZR161");
+VALUES("Jared","Lincenberg","Jaredlincenberg@mymail.mines.edu","$2y$12$u6LIqo6JcUArvX.8a2/jGuTWntBMBDhW.zYymyT87K1iuKcf/ZR161"),
+("J", "L", "j@l.com", "$2y$12$A8g8XW7r6g/fM.OaxrTnx.55t99LjTti3WlJBGWP28QxrCZFDGbg.");
 INSERT INTO admins (userID) 
 VALUES(1);

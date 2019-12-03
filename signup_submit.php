@@ -2,7 +2,11 @@
 $firstName = $_POST['firstname'];
 $lastName = $_POST['lastname'];
 $email = $_POST['email'];
-$password = $_POST['password'];	
+$options = [
+	'cost' => 12,
+];
+$password = password_hash($_POST["password"], PASSWORD_BCRYPT, $options );	
+
 include 'connect.php';
 
 /* check connection */
