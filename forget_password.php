@@ -1,3 +1,42 @@
+<?php
+	include 'connect.php';
+	if (isset($_POST['submit']))  {
+		$firstname=$_POST['firstname'];
+		$lastname=$_POST['lastname'];
+		$email=$_POST['email'];
+		
+		$querycheck="SELECT Password FROM USERS WHERE FirstName=? AND LastName=? AND Email=?";
+		$stmt = $mysqli->prepare( $querycheck );
+		$stmt->bind_param( "sss", $fname, $lname, $emailsend);
+		$fname = $firstname;
+		$lname = $lastname;
+		$emailsend = $email;
+		$stmt->execute();
+		$res = $stmt->get_result();
+		$row=mysqli_fetch_array($res);
+		if(!is_null($row[0])) {
+			$password = $row[0];
+			$message = "Please use this password to login " . $password;
+			$r = mysqli_fetch_assoc($res);
+			$to = $email;
+			$subject = "Your Recovered Password";
+			if(mail($to, $subject, $message)){
+				$message =  "Your Password has been sent to your email id";
+			}
+			else{
+				$message =  "Failed to Recover your password, try again";
+			}
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		else{
+			$message = "The user name does not exist!";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		$stmt->close();
+	}
+	
+?>
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -36,7 +75,7 @@
 			</fieldset>
 			<fieldset>
 				<input type="hidden" name="time" value="<?php echo time();?>">
-				<input type="submit" name="reset" value="Reset Password">
+				<input type="submit" name="submit" id="submit" value="Reset Password">
 				<p>* By clicking the reset password button, a temporary password will be sent to your email.</p>
 			</fieldset>
 		</form>
