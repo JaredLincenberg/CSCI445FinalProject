@@ -31,7 +31,6 @@
 	$row=mysqli_fetch_array($res);
 	if(is_null($row[0])) {
 		$dup = false;
-
 	}
 	else{
 		$message = "You have registered before.";

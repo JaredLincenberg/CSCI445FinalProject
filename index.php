@@ -54,19 +54,21 @@
 		<?php if ($_SESSION["passwordVerified"] == TRUE): ?>
 			<!-- User is successfully Logged In -->
 			 <h2> Something New? --- Write A Post</h2>
-			 <form class="entry-form" id="log-in"  method="post">
+			 <form class="entry-form" id="write-post"  action="post_submit.php" method="post">
 				<fieldset class="user-id-form">
 				<label for="title"> Title
-					<input type="text" name="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
+					<input type="text" name="title" pattern="[A-Za-z ']{1,50}" title="Letters, spaces only."
 				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>">
 				</label><br>
 
 				<label for="content" >Content</label>
-				<textarea style="width:80%;margin-left:10%;" name="content" rows="10" cols="30"><?php if(isset($_POST['content'])) echo $_POST['content'];?></textarea>
+				<textarea style="width:80%;margin-left:10%;" pattern="[A-Za-z '.,?;:!"]{1,300}" name="content" rows="10" cols="30" 
+				title="Letters, spaces, and punctuation only."><?php if(isset($_POST['content'])) echo $_POST['content'];?></textarea>
 				<br>
 				</fieldset>
 				<fieldset>
-					<input type="hidden" name="time" value="<?php echo time();?>">
+					<?php date_default_timezone_set("America/Denver");?>
+					<input type="hidden" name="time" value="<?php date_default_timezone_set("America/Denver"); echo date('Y-m-d h:i:s');?>">
 					<input class="button" type="reset" name="reset" id="reset" value="Reset"> 
 					<input type="submit" name="submit" value="Post It" id="submit">
 				</fieldset>
