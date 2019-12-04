@@ -22,6 +22,9 @@
 			$hash = $row[0];
 			$valid = password_verify ( $password, $hash );
 			if($valid){
+				$_SESSION["userfname"] = $firstname;
+				$_SESSION["userlname"] = $lastname;
+				$_SESSION["useremail"] = $email;
 				$_SESSION["passwordVerified"] = $valid;
 				header("Location: login_submit.php");
 			}
@@ -49,15 +52,12 @@
 </head>
 <body>
 	<?php 
-		session_start();
 		$path = "";
 		$thisPage = "login";
 		include 'templateHeader.php';
 
 	?>
 	
-
-
   	<!-- Test Account
   		J
   		L

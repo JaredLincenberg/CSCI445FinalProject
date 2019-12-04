@@ -11,8 +11,6 @@ if ($mysqli->connect_errno) {
     //printf("Connect failed: %s\n", $mysqli->connect_error);
     exit();
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -37,6 +35,7 @@ if ($mysqli->connect_errno) {
 			if ($_SESSION["passwordVerified"]) {
 				echo '<h2>You have successfully Logged In!</h2>';
 				echo '<p class="tab" style="color:darkGreen;">Go back to <a style="color:red" href="index.php">home page</a>.</p><br>';
+				echo '<p class="tab" style="color:darkGreen;"><a style="color:red" href="change_password.php">Change Password</a>.</p><br>';
 			}
 			else{
 				echo '<h2>You have an error with your Name or Password</h2>';
@@ -45,7 +44,7 @@ if ($mysqli->connect_errno) {
 			}
 			
 		?>
-
+		
 	</main>
 </body>
 </html>

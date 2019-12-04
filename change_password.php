@@ -4,8 +4,9 @@
 	if (isset($_POST['submit']))  {
 		//Confuse about how to pass the user name or id through login page.
 		//this two lines should be replaced.
-		$firstname=$_POST['firstname'];
-		$lastname=$_POST['lastname'];
+		$firstname = $_SESSION["userfname"];
+		$lastname = $_SESSION["userlname"];
+		$email = $_SESSION["useremail"];
 		$newpassword=$_POST['new_password'];
 		$confirm_password = $_POST['retype_password'];
 		$oldpassword = $_POST['old_password'];
@@ -60,18 +61,17 @@
 			<fieldset class="user-id-form">
 				<label for="password"> Old Password
 					<input type="password" name="old_password" id="old_password" required="required">
-				</label>
+				</label><br>
+				
 				<label for="password"> New Password
 					<input type="password" name="new_password" required="required" id="new_password"
 					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" 
 					title="Must contain at least one number and one uppercase and lowercase letter, and at least 6 or more characters">
-				<span class="error">*</span></label>
 				</label>
 				<br>
 				
 				<label for="retype_password"> Confirm Password
 				<input type="password" required="required" Password: name="retype_password" id="retype_password">
-				<span class="error">*</span>
 				</label>
 			</fieldset>
 			<fieldset>
