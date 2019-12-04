@@ -80,7 +80,8 @@ VALUES (1,"My First Post", "This is the bestest website like ever", "2019-12-03 
 
 
 INSERT INTO `posts`(`userID`, `Title`, `Content`, `TimeCreated`) 
-VALUES (2,"My First Post","This my first post on my website. Hope this works out well!",CURRENT_TIMESTAMP);
+VALUES (2,"My First Post","This my first post on my website. Hope this works out well!",CURRENT_TIMESTAMP),
+(2,"New post","Lots of Content Here",CURRENT_TIMESTAMP)
 
 INSERT INTO `posts`(`userID`, `Title`, `Content`, `TimeCreated`) 
 VALUES (1,"Another Post", "This website keeps on getting better!", "2019-12-03 21:14:56");

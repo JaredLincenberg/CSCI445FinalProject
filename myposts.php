@@ -38,9 +38,22 @@
 	<?php if (isset($_SESSION["passwordVerified"])): ?>
 		<?php if ($_SESSION["passwordVerified"] == TRUE): ?>
 			<!-- User is successfully Logged In -->
-			<?php 
-				getPosts($_SESSION["userID"]);
-			?>
+			
+			<table>
+				<thead>
+				<tr>
+					<th>Title</th>
+					<th>Content</td>
+					<th>Time Posted</th>
+					<!-- <th>Likes</th> -->
+				</tr>
+				</thead>
+				<tbody>
+				<?php 
+					getPosts($_SESSION["userID"]);
+				?>
+				</tbody>
+			</table>
 		 	<p>Loggedin</p>
 		<?php else: ?>
 			<!-- User has failed to Logged In successfully -->
@@ -56,16 +69,26 @@
 </html>
 
 <?php 
-function getPosts($userID,$Limit = 20)
+function getPosts($userID, $Limit = 20, $Offset = 0)
 {
+	// Connect and query sever
 	include 'connect.php';
-	$querycheck="SELECT * FROM `posts` WHERE userID = ? ORDER BY TimeCreated DESC";
+	$querycheck="SELECT * FROM `posts` WHERE userID = ? ORDER BY TimeCreated DESC LIMIT ?, ?";
 	$stmt = $mysqli->prepare( $querycheck );
-	$stmt->bind_param( "i", $uID);
+	$stmt->bind_param( "iii", $uID, $Off, $lim);
 	$uID = $userID;
+	$Off = $Offset;
+	$lim = $Limit;
 	$stmt->execute();
 	$res = $stmt->get_result();
-	$row=mysqli_fetch_array($res);
-	echo var_dump($row);
+
+	// Display Post information
+	while ($row = mysqli_fetch_array($res)) {
+		echo "<tr>";
+		echo "<td><a href=\"mypost.php?postID=".$row["postID"] . "\">" . $row["Title"] . "</a></td>";
+		echo "<td>" . $row["Content"] . "</td>";
+		echo "<td>" . $row["TimeCreated"] . "</td>";
+		echo "</tr>";
+	}
 }
 ?>
