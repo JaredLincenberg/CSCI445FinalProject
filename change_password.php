@@ -13,7 +13,6 @@
 		$newpassword=$_POST['new_password'];
 		$confirm_password = $_POST['retype_password'];
 		$oldpassword = $_POST['old_password'];
-		
 		$querycheck="SELECT password FROM USERS WHERE FirstName=? AND LastName=?";
 		$stmt = $mysqli->prepare( $querycheck );
 		$stmt->bind_param( "ss", $fname, $lname);
@@ -29,7 +28,19 @@
 				//verify two passwords are the same.
 				if($newpassword == $confirm_password){
 					//TODO: change password
-					
+					$options = ['cost' => 12,];
+					$hashpassword = password_hash($newpassword, PASSWORD_BCRYPT, $options );	
+					$queryupdate = "UPDATE USERS SET Password = '" .$hashpassword. "' WHERE FirstName = ? AND LastName = ?";
+					$stmt2 = $mysqli->prepare( $queryupdate );
+					$stmt2->bind_param( "ss", $fname2, $lname2 );
+					$fname2 = $firstname;
+					$lname2 = $lastname;
+					$stmt2->execute();
+					$stmt2->close();	
+				}
+				else{
+					$message = "New passwords are not consistent!";
+					echo "<script type='text/javascript'>alert('$message');</script>";
 				}
 			}
 			else{
