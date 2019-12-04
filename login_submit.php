@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 $_SESSION['last_activity'] = time(); 
 //session expire in n minutes
-$_SESSION['expire_time'] = 5; 
+$_SESSION['expire_time'] = 5*60; 
 if(array_key_exists('passwordVerified',$_SESSION)){
 	if (!isset($_SESSION["passwordVerified"])) {
 		header("Location: login.php");
@@ -44,7 +44,6 @@ if ($mysqli->connect_errno) {
 		
 		<?php 
 			if ($_SESSION["passwordVerified"]) {
-				$_SESSION['loggedin_time'] = time(); 
 				echo '<h2>You have successfully Logged In!</h2>';
 				echo '<p class="tab" style="color:darkGreen;">Go back to <a style="color:red" href="index.php">home page</a>.</p><br>';
 				echo '<p class="tab" style="color:darkGreen;"><a style="color:red" href="change_password.php">Change Password</a>.</p><br>';
