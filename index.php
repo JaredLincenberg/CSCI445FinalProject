@@ -53,8 +53,25 @@
 	<?php if (isset($_SESSION["passwordVerified"])): ?>
 		<?php if ($_SESSION["passwordVerified"] == TRUE): ?>
 			<!-- User is successfully Logged In -->
-		 	<p>Loggedin</p>
-			 <?php echo '<p class="tab" style="color:darkGreen;"><a style="color:red" href="change_password.php">Change Password</a>.</p><br>';?>
+			 <h2> Something New? --- Write A Post</h2>
+			 <form class="entry-form" id="log-in"  method="post">
+				<fieldset class="user-id-form">
+				<label for="title"> Title
+					<input type="text" name="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
+				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>">
+				</label><br>
+
+				<label for="content" >Content</label>
+				<textarea style="width:80%;margin-left:10%;" name="content" rows="10" cols="30"><?php if(isset($_POST['content'])) echo $_POST['content'];?></textarea>
+				<br>
+				</fieldset>
+				<fieldset>
+					<input type="hidden" name="time" value="<?php echo time();?>">
+					<input class="button" type="reset" name="reset" id="reset" value="Reset"> 
+					<input type="submit" name="submit" value="Post It" id="submit">
+				</fieldset>
+			</form><br><br>
+			<?php echo '<p class="tab" style="color:darkGreen;"><a href="change_password.php">Change Password</a>.</p><br>';?>
 		<?php else: ?>
 			<!-- User has failed to Logged In successfully -->
 			<p>Please Log in.</p>
