@@ -1,13 +1,6 @@
 <?php
 	include 'connect.php';
-	if(array_key_exists('passwordVerified',$_SESSION)){
-		if (!isset($_SESSION["passwordVerified"])) {
-			header("Location: login.php");
-		}
-	}
-	else{
-		header("Location: login.php");
-	}
+	//TODO: handle case if user direct to this page without sign up.
 	
 	$firstName = $_POST['firstname'];
 	$lastName = $_POST['lastname'];

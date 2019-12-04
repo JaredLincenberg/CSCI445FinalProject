@@ -7,6 +7,9 @@
 		if (!isset($_SESSION["passwordVerified"])) {
 			header("Location: login.php");
 		}
+		if((time() - $_SESSION['loggedin_time']) > 20){
+			header("Location: login.php");
+		}
 	}
 	else{
 		header("Location: login.php");

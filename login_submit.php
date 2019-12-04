@@ -42,6 +42,7 @@ if ($mysqli->connect_errno) {
 		
 		<?php 
 			if ($_SESSION["passwordVerified"]) {
+				$_SESSION['loggedin_time'] = time(); 
 				echo '<h2>You have successfully Logged In!</h2>';
 				echo '<p class="tab" style="color:darkGreen;">Go back to <a style="color:red" href="index.php">home page</a>.</p><br>';
 				echo '<p class="tab" style="color:darkGreen;"><a style="color:red" href="change_password.php">Change Password</a>.</p><br>';
