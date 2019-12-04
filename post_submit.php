@@ -82,7 +82,6 @@
 			if ($_SESSION["passwordVerified"]) {
 				echo '<h2>Your new post is posted!</h2>';
 				echo '<p class="tab" style="color:darkGreen;">Go back to <a style="color:red" href="index.php">Write another post.</a>.</p><br>';
-				echo $time_created;
 			}			
 		?>
 		

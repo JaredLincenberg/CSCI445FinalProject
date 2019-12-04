@@ -9,6 +9,7 @@
 			header("Location: login.php");
 		}
 		if(time() - $_SESSION['last_activity'] > $_SESSION['expire_time'] ){
+			session_destroy();
 			$message = "Your session has expired!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 			header("Location: login.php");
@@ -32,7 +33,6 @@
 	<?php 
 	  $path = "";
 	  $thisPage = "myposts";
-
 	  if (isset($_SESSION["passwordVerified"])) {
 			// echo var_dump($_SESSION);
 			if ($_SESSION["passwordVerified"] == TRUE) {
@@ -44,9 +44,7 @@
 		}
 		else{
 			include 'templateHeader.php';
-			header("Location: login.php");
-		}
-	  
+		}	  
 	?>
 	<main>
 
@@ -98,12 +96,15 @@ function getPosts($userID, $Limit = 20, $Offset = 0)
 	$res = $stmt->get_result();
 
 	// Display Post information
+	$rid = 1;
 	while ($row = mysqli_fetch_array($res)) {
 		echo "<tr>";
 		echo "<td><a href=\"mypost.php?postID=".$row["postID"] . "\">" . $row["Title"] . "</a></td>";
 		echo "<td>" . $row["Content"] . "</td>";
 		echo "<td>" . $row["TimeCreated"] . "</td>";
+		echo "<td><a href=\"delete.php?id=".$row["postID"]."\">Delete</a></td>";
 		echo "</tr>";
+		$rid = $rid + 1;
 	}
 }
 ?>
