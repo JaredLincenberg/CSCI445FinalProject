@@ -1,7 +1,8 @@
 <?php  
-if (session_status() == PHP_SESSION_NONE) {
-	    session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+		    session_start();
 	}
+	include 'connect.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +29,18 @@ if (session_status() == PHP_SESSION_NONE) {
 		}
 		else{
 			include 'templateHeader.php';
+			header("Location: login.php");
 		}
 	  
 	?>
 	<main>
-	
+
 	<?php if (isset($_SESSION["passwordVerified"])): ?>
 		<?php if ($_SESSION["passwordVerified"] == TRUE): ?>
 			<!-- User is successfully Logged In -->
+			<?php 
+				getPosts($_SESSION["userID"]);
+			?>
 		 	<p>Loggedin</p>
 		<?php else: ?>
 			<!-- User has failed to Logged In successfully -->
@@ -49,3 +54,18 @@ if (session_status() == PHP_SESSION_NONE) {
 	
 </body>
 </html>
+
+<?php 
+function getPosts($userID,$Limit = 20)
+{
+	include 'connect.php';
+	$querycheck="SELECT * FROM `posts` WHERE userID = ? ORDER BY TimeCreated DESC";
+	$stmt = $mysqli->prepare( $querycheck );
+	$stmt->bind_param( "i", $uID);
+	$uID = $userID;
+	$stmt->execute();
+	$res = $stmt->get_result();
+	$row=mysqli_fetch_array($res);
+	echo var_dump($row);
+}
+?>
