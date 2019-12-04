@@ -7,7 +7,9 @@
 		if (!isset($_SESSION["passwordVerified"])) {
 			header("Location: login.php");
 		}
-		if((time() - $_SESSION['loggedin_time']) > 20){
+		if((time() - $_SESSION['loggedin_time']) > 200){
+			$message = "Your session has expired!";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 			header("Location: login.php");
 		}
 	}
