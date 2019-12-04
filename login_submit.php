@@ -3,11 +3,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// $firstName = $_POST['firstname'];
-// $lastName = $_POST['lastname'];
-// $email = $_POST['email'];
-// $password = $_POST['password'];	
-// echo var_dump($password);
+
 include 'connect.php';
 
 /* check connection */
@@ -16,30 +12,6 @@ if ($mysqli->connect_errno) {
     exit();
 }
 
-// //check customer exists
-// $querycheck = "SELECT * FROM USERS WHERE firstname= ? AND lastName = ?";
-// $stmt = $mysqli->prepare( $querycheck );
-
-// $fname = $firstName;
-// $lname = $lastName;
-// $email = $email;
-// $stmt->bind_param( "ss", $fname, $lname);
-
-// $stmt->execute();
-
-
-
-// $res = $stmt->get_result();
-// $row=mysqli_fetch_array($res);
-// // echo var_dump($row);
-
-// $passwordVerified = password_verify($password,$row["Password"]);
-
-// $stmt->close();
-
-// $_SESSION["passwordVerified"] = $passwordVerified;
-
-// $_SESSION["userID"] = $row["userID"];
 
 ?>
 <!DOCTYPE html>
@@ -56,7 +28,6 @@ if ($mysqli->connect_errno) {
 	  $thisPage = "login";
 	  include 'header_afterloggedin.php';
 
-	  // password_hash($_POST["password"], PASSWORD_BCRYPT, $options );
 	?>
 		
 	<!-- Body of Web Page -->

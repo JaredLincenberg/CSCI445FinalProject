@@ -1,4 +1,7 @@
 <?php
+	if (session_status() == PHP_SESSION_NONE) {
+	    session_start();
+	}
 	include 'connect.php';
 	if (isset($_POST['submit']))  {
 		$firstname=$_POST['firstname'];
@@ -19,6 +22,7 @@
 			$hash = $row[0];
 			$valid = password_verify ( $password, $hash );
 			if($valid){
+				$_SESSION["passwordVerified"] = $valid;
 				header("Location: login_submit.php");
 			}
 			else{
