@@ -16,7 +16,7 @@ main {
 
 #top-nav{
 	direction: ltr;
-    color: #ccc;
+    color: lightBlue;
     font-size: 13px;
     font-weight: 400;
     height: 32px;
@@ -26,7 +26,7 @@ main {
     width: 100%;
     min-width: 600px;
     z-index: 99999;
-    background: #23282d;
+    background: lightBlue;
 }
 
 ul#left-ul{

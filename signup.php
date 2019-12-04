@@ -20,12 +20,6 @@
 		<form class="entry-form" id="sign-up" action="signup_submit.php" method="post">
 			<!-- Get information about User -->
 			<fieldset class="user-id-form">
-				<!--
-				<label for="username">User Name:
-				<input type="text" name="username" id="username" pattern="[A-Za-z0-9 ']{1,50}" title="Letters, number, spaces, and apostrophes only"
-				required value="<?php if(isset($_POST['username'])) echo $_POST['username'];?>"> 
-				<span class="error">*</span></label>
-				<br> -->
 				
 				<label for="firstname">First Name:
 				<input type="text" name="firstname" id="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
@@ -42,12 +36,6 @@
 				<label for="email">E-mail: 
 				<input type="email" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
 				value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
-				<span class="error">*</span></label> 
-			    <br>
-
-				<label for="confirm_Email"> Confirm Email 
-				<input type="email" name="confirm_email" id="confirm_email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
-				value="<?php if(isset($_POST['confirm_email'])) echo $_POST['confirm_email'];?>">
 				<span class="error">*</span></label> 
 			    <br>
 
@@ -79,16 +67,7 @@
 
 //check if confirm information are same.
 function checkform() {
-	var validinput = true;
-	var email1 = document.getElementById("email").value;
-	var email2 = document.getElementById("confirm_email").value;
-	if (email1 === email2){
-        validinput = true;
-    } else {
-		alert("Email and confirm email must be the same!");
-        validinput = false;
-    }
-	
+	var validinput = true;	
 	var password1 = document.getElementById("password").value;
 	var password2 = document.getElementById("retype_password").value;
 	if (password1 === password2){
@@ -98,11 +77,7 @@ function checkform() {
         validinput = false;
     }
 	
-	//TODO: check user name exists
-	
 	return validinput;
-	
-
 }
 </script>	
 </body>
