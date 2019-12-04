@@ -4,6 +4,15 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+if(array_key_exists('passwordVerified',$_SESSION)){
+	if (!isset($_SESSION["passwordVerified"])) {
+		header("Location: login.php");
+	}
+}
+else{
+	header("Location: login.php");
+}
+
 include 'connect.php';
 
 /* check connection */
@@ -33,6 +42,7 @@ if ($mysqli->connect_errno) {
 		
 		<?php 
 			if ($_SESSION["passwordVerified"]) {
+				$_SESSION['loggedin_time'] = time(); 
 				echo '<h2>You have successfully Logged In!</h2>';
 				echo '<p class="tab" style="color:darkGreen;">Go back to <a style="color:red" href="index.php">home page</a>.</p><br>';
 				echo '<p class="tab" style="color:darkGreen;"><a style="color:red" href="change_password.php">Change Password</a>.</p><br>';

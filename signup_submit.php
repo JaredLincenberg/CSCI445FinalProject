@@ -1,55 +1,58 @@
 <?php
-$firstName = $_POST['firstname'];
-$lastName = $_POST['lastname'];
-$email = $_POST['email'];
-$message = "You have successfully signed up!";
-$options = [
-	'cost' => 12,
-];
-$password = password_hash($_POST["password"], PASSWORD_BCRYPT, $options );	
+	include 'connect.php';
+	//TODO: handle case if user direct to this page without sign up.
+	
+	$firstName = $_POST['firstname'];
+	$lastName = $_POST['lastname'];
+	$email = $_POST['email'];
+	$message = "You have successfully signed up!";
+	$options = [
+		'cost' => 12,
+	];
+	$password = password_hash($_POST["password"], PASSWORD_BCRYPT, $options );	
 
-include 'connect.php';
+	include 'connect.php';
 
-/* check connection */
-if ($mysqli->connect_errno) {
-    //printf("Connect failed: %s\n", $mysqli->connect_error);
-    exit();
-}
-$dup = true;
-//check customer exists
-$querycheck = "SELECT * FROM USERS WHERE firstname= ? AND lastName = ? OR email = ?";
-$stmt = $mysqli->prepare( $querycheck );
-$stmt->bind_param( "sss", $fname, $lname, $emai );
-$fname = $firstName;
-$lname = $lastName;
-$emai = $email;
-$stmt->execute();
-$res = $stmt->get_result();
-$row=mysqli_fetch_array($res);
-if(is_null($row[0])) {
-	$dup = false;
-
-}
-else{
-	$message = "You have registered before.";
-}
-$stmt->close();
-
-//add customer
-if(!$dup){
-	$queryinsertc = "INSERT INTO USERS (firstname, lastname, email, password) VALUES (?,?,?,?);";
-	$stmt2 = $mysqli->prepare( $queryinsertc );
-	$stmt2->bind_param( "ssss", $fname, $lname, $cemail, $pword);
+	/* check connection */
+	if ($mysqli->connect_errno) {
+		//printf("Connect failed: %s\n", $mysqli->connect_error);
+		exit();
+	}
+	$dup = true;
+	//check customer exists
+	$querycheck = "SELECT * FROM USERS WHERE firstname= ? AND lastName = ? OR email = ?";
+	$stmt = $mysqli->prepare( $querycheck );
+	$stmt->bind_param( "sss", $fname, $lname, $emai );
 	$fname = $firstName;
 	$lname = $lastName;
-	$cemail = $email;
-	$pword = $password;
-	$stmt2->execute();
-	$stmt2->close();  
-}
+	$emai = $email;
+	$stmt->execute();
+	$res = $stmt->get_result();
+	$row=mysqli_fetch_array($res);
+	if(is_null($row[0])) {
+		$dup = false;
 
-/* close connection */
-$mysqli->close();
+	}
+	else{
+		$message = "You have registered before.";
+	}
+	$stmt->close();
+
+	//add customer
+	if(!$dup){
+		$queryinsertc = "INSERT INTO USERS (firstname, lastname, email, password) VALUES (?,?,?,?);";
+		$stmt2 = $mysqli->prepare( $queryinsertc );
+		$stmt2->bind_param( "ssss", $fname, $lname, $cemail, $pword);
+		$fname = $firstName;
+		$lname = $lastName;
+		$cemail = $email;
+		$pword = $password;
+		$stmt2->execute();
+		$stmt2->close();  
+	}
+
+	/* close connection */
+	$mysqli->close();
 ?>
 
 <!DOCTYPE html>

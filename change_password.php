@@ -3,7 +3,17 @@
 	    session_start();
 	}
 	include 'connect.php';
-	
+	if(array_key_exists('passwordVerified',$_SESSION)){
+		if (!isset($_SESSION["passwordVerified"])) {
+			header("Location: login.php");
+		}
+		if((time() - $_SESSION['loggedin_time']) > 20){
+			header("Location: login.php");
+		}
+	}
+	else{
+		header("Location: login.php");
+	}
 	if (isset($_POST['submit']))  {
 		//Confuse about how to pass the user name or id through login page.
 		//this two lines should be replaced.
@@ -27,7 +37,7 @@
 			if($valid){
 				//verify two passwords are the same.
 				if($newpassword == $confirm_password){
-					//TODO: change password
+					//change password
 					$options = ['cost' => 12,];
 					$hashpassword = password_hash($newpassword, PASSWORD_BCRYPT, $options );	
 					$queryupdate = "UPDATE USERS SET Password = '" .$hashpassword. "' WHERE FirstName = ? AND LastName = ?";
