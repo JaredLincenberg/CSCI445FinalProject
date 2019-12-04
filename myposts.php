@@ -96,13 +96,15 @@ function getPosts($userID, $Limit = 20, $Offset = 0)
 	$res = $stmt->get_result();
 
 	// Display Post information
+	$rid = 1;
 	while ($row = mysqli_fetch_array($res)) {
 		echo "<tr>";
 		echo "<td><a href=\"mypost.php?postID=".$row["postID"] . "\">" . $row["Title"] . "</a></td>";
 		echo "<td>" . $row["Content"] . "</td>";
 		echo "<td>" . $row["TimeCreated"] . "</td>";
-		echo '<td><input type="button" name="delete" value="delete"></td>';
+		echo "<td><a href=\"delete.php?id=".$row["postID"]."\">Delete</a></td>";
 		echo "</tr>";
+		$rid = $rid + 1;
 	}
 }
 ?>
