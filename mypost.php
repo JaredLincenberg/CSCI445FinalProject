@@ -3,20 +3,6 @@
 		    session_start();
 	}
 	include 'connect.php';
-	
-	if(array_key_exists('passwordVerified',$_SESSION)){
-		if (!isset($_SESSION["passwordVerified"])) {
-			header("Location: login.php");
-		}
-		if((time() - $_SESSION['loggedin_time']) > 10){
-			$message = "Your session has expired!";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			header("Location: login.php");
-		}
-	}
-	else{
-		header("Location: login.php");
-	}
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +16,7 @@
 <body>
 	<?php 
 	  $path = "";
-	  $thisPage = "myposts";
+	  $thisPage = "mypost";
 
 	  if (isset($_SESSION["passwordVerified"])) {
 			// echo var_dump($_SESSION);
@@ -59,16 +45,30 @@
 					<th>Title</th>
 					<th>Content</td>
 					<th>Time Posted</th>
-					<!-- <th>Likes</th> -->
 				</tr>
 				</thead>
 				<tbody>
 				<?php 
-					getPosts($_SESSION["userID"]);
+					getPost($_GET["postID"]);
 				?>
 				</tbody>
 			</table>
-		 	<p>Loggedin</p>
+			
+			<table>
+				<thead>
+				<tr>
+					<th>From</th>
+					<th>Comment</td>
+					<th>Time Posted</th>
+				</tr>
+				</thead>
+				<tbody>
+				<?php 
+					getPostCommentsAndLikes($_GET["postID"]);
+				?> 
+				</tbody>
+			</table>
+
 		<?php else: ?>
 			<!-- User has failed to Logged In successfully -->
 			<p>Please Log in.</p>
@@ -83,14 +83,50 @@
 </html>
 
 <?php 
-function getPosts($userID, $Limit = 20, $Offset = 0)
+function getPostCommentsAndLikes($postID,$Limit = 20,$Offset = 0 )
 {
 	// Connect and query sever
 	include 'connect.php';
-	$querycheck="SELECT * FROM `posts` WHERE userID = ? ORDER BY TimeCreated DESC LIMIT ?, ?";
+
+	// Get Comments
+	$querycheck="SELECT comments.* FROM `comments`, `posts` WHERE comments.postID = ? AND posts.postID = ? LIMIT ?, ?";
 	$stmt = $mysqli->prepare( $querycheck );
-	$stmt->bind_param( "iii", $uID, $Off, $lim);
-	$uID = $userID;
+	$stmt->bind_param( "iiii", $pID, $pID, $Off, $lim);
+	$pID = $postID;
+	$Off = $Offset;
+	$lim = $Limit;
+	$stmt->execute();
+	$res = $stmt->get_result();
+
+	// Get number of Likes
+	$querycheck="SELECT COUNT(*) FROM `likes` WHERE postID = ? ";
+	$stmt = $mysqli->prepare( $querycheck );
+	$stmt->bind_param( "i", $pID);
+	$pID = $postID;
+	$stmt->execute();
+	$res2 = $stmt->get_result();
+
+	// Display Post information
+
+	while ($row = mysqli_fetch_array($res)) {
+		// echo var_dump($row);
+		echo "<tr>";
+		echo "<td>" . $row["userID"] . "</td>";
+		echo "<td>" . $row["Content"] . "</td>";
+		echo "<td>" . $row["TimeCreated"] . "</td>";
+		echo "</tr>";
+	}
+	// echo var_dump(mysqli_fetch_array($res2));
+}
+
+function getPost($postID, $Limit = 20, $Offset = 0)
+{
+	// Connect and query sever
+	include 'connect.php';
+	$querycheck="SELECT * FROM `posts` WHERE postID = ? ORDER BY TimeCreated DESC LIMIT ?, ?";
+	$stmt = $mysqli->prepare( $querycheck );
+	$stmt->bind_param( "iii", $pID, $Off, $lim);
+	$pID = $postID;
 	$Off = $Offset;
 	$lim = $Limit;
 	$stmt->execute();
@@ -99,10 +135,11 @@ function getPosts($userID, $Limit = 20, $Offset = 0)
 	// Display Post information
 	while ($row = mysqli_fetch_array($res)) {
 		echo "<tr>";
-		echo "<td><a href=\"mypost.php?postID=".$row["postID"] . "\">" . $row["Title"] . "</a></td>";
+		echo "<td>" . $row["Title"] . "</td>";
 		echo "<td>" . $row["Content"] . "</td>";
 		echo "<td>" . $row["TimeCreated"] . "</td>";
 		echo "</tr>";
 	}
 }
+
 ?>
