@@ -15,7 +15,7 @@
 
 	<?php
 		if (isset($_SESSION["passwordVerified"])) {
-			echo var_dump($_SESSION);
+			// echo var_dump($_SESSION);
 			if ($_SESSION["passwordVerified"] == TRUE) {
 				echo "Loggedin";
 			}
