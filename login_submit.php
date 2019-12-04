@@ -1,5 +1,7 @@
 <?php
-
+$_SESSION['last_activity'] = time(); 
+//session expire in n minutes
+$_SESSION['expire_time'] = 1*60; 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
