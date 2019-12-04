@@ -101,6 +101,7 @@ function getPosts($userID, $Limit = 20, $Offset = 0)
 		echo "<td><a href=\"mypost.php?postID=".$row["postID"] . "\">" . $row["Title"] . "</a></td>";
 		echo "<td>" . $row["Content"] . "</td>";
 		echo "<td>" . $row["TimeCreated"] . "</td>";
+		echo '<td><input type="button" name="delete" value="delete"></td>';
 		echo "</tr>";
 	}
 }

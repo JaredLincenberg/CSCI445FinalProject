@@ -55,8 +55,8 @@ $_SESSION['last_activity'] = time();
 			<table>
 				<thead>
 				<tr>
-					<th>User</th>
 					<th>Title</th>
+					<th>User</th>
 					<th>Content</th>
 					<th>Time Posted</th>
 					<!-- <th>Likes</th> -->
@@ -104,14 +104,17 @@ $_SESSION['last_activity'] = time();
 				$res2 = $stmt2->get_result();
 				$row2 = mysqli_fetch_array($res2);
 				echo "<tr>";
-				echo "<td>" . $row2["FirstName"] . " ". $row2["LastName"] . "</td>";
 				echo "<td><a href=\"mypost.php?postID=".$row["postID"] . "\">" . $row["Title"] . "</a></td>";
+				echo "<td>" . $row2["FirstName"] . " ". $row2["LastName"] . "</td>";
 				echo "<td>" . $row["Content"] . "</td>";
 				echo "<td>" . $row["TimeCreated"] . "</td>";
+				echo '<td><input type="button" name="like" value="like"></td>';
+				echo '<td><input type="button" name="comment" value="comment"></td>';
 				echo "</tr>";
+				
 			}
 		}
-?>
+	?>
 
 	</main>
 	
