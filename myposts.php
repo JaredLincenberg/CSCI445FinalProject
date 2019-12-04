@@ -16,23 +16,36 @@ if (session_status() == PHP_SESSION_NONE) {
 	<?php 
 	  $path = "";
 	  $thisPage = "myposts";
-	  include 'templateHeader.php';
-	?>
 
-	<?php
-		if (isset($_SESSION["passwordVerified"])) {
+	  if (isset($_SESSION["passwordVerified"])) {
 			// echo var_dump($_SESSION);
 			if ($_SESSION["passwordVerified"] == TRUE) {
-				echo "Loggedin";
+				include 'header_afterloggedin.php';
 			}
 			else{
-				echo "Not loggedin";
+				include 'templateHeader.php';
 			}
 		}
 		else{
-			echo "Not set";
+			include 'templateHeader.php';
 		}
+	  
 	?>
+	<main>
+	
+	<?php if (isset($_SESSION["passwordVerified"])): ?>
+		<?php if ($_SESSION["passwordVerified"] == TRUE): ?>
+			<!-- User is successfully Logged In -->
+		 	<p>Loggedin</p>
+		<?php else: ?>
+			<!-- User has failed to Logged In successfully -->
+			<p>Please Log in.</p>
+		<?php endif ?>
+	<?php else: ?>
+		<!-- User has not tried to Log In -->
+		<p>Please Log in.</p>
+	<?php endif ?>
+	</main>
 	
 </body>
 </html>

@@ -1,8 +1,4 @@
-<?php 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-?>
+
 <!--log in bar-->
 <div id="top-nav" style="background-color:lightBlue">
 	
