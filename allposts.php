@@ -108,8 +108,8 @@ $_SESSION['last_activity'] = time();
 				echo "<td>" . $row2["FirstName"] . " ". $row2["LastName"] . "</td>";
 				echo "<td>" . $row["Content"] . "</td>";
 				echo "<td>" . $row["TimeCreated"] . "</td>";
-				echo '<td><input type="button" name="like" value="like"></td>';
 				echo '<td><input type="button" name="comment" value="comment"></td>';
+				echo "<td><a href=\"like.php?pid=".$row["postID"]."&uid=".$userid."\">Like</a></td>";
 				echo "</tr>";
 				
 			}
