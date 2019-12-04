@@ -9,7 +9,7 @@
 		$email = $_POST['email'];
 		$password=$_POST['password'];
 		
-		$querycheck="SELECT password FROM USERS WHERE FirstName=? AND LastName=? AND Email=?";
+		$querycheck="SELECT password, userID FROM USERS WHERE FirstName=? AND LastName=? AND Email=?";
 		$stmt = $mysqli->prepare( $querycheck );
 		$stmt->bind_param( "sss", $fname, $lname, $emai);
 		$fname = $firstname;
@@ -25,6 +25,7 @@
 				$_SESSION["userfname"] = $firstname;
 				$_SESSION["userlname"] = $lastname;
 				$_SESSION["useremail"] = $email;
+				$_SESSION["userID"] = $row[1];
 				$_SESSION["passwordVerified"] = $valid;
 				header("Location: login_submit.php");
 			}
