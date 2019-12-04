@@ -14,19 +14,58 @@
 		$stmt->execute();
 		$res = $stmt->get_result();
 		$row=mysqli_fetch_array($res);
+
 		if(!is_null($row[0])) {
-			$password = $row[0];
-			$message = "Please use this password to login " . $password;
-			$r = mysqli_fetch_assoc($res);
-			$to = $email;
-			$subject = "Your Recovered Password";
-			if(mail($to, $subject, $message)){
-				$message =  "Your Password has been sent to your email id";
+			require 'PHPMailer/PHPMailerAutoload.php';
+
+			$mail = new PHPMailer;
+			// $mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			$mail->Host = 'smtp.sendgrid.net';  				// Specify main and backup SMTP servers
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = 'apikey';                 // SMTP username
+			$mail->Password = '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';                           // SMTP password
+			// $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 587;                                    // TCP port to connect to
+
+			$mail->setFrom('from@example.com', 'Mailer');
+			$mail->addAddress('jaredlincenberg@mymail.mines.edu', 'Joe User');     // Add a recipient
+			// $mail->addAddress('ellen@example.com');               // Name is optional
+			// $mail->addReplyTo('info@example.com', 'Information');
+			// $mail->addCC('cc@example.com');
+			// $mail->addBCC('bcc@example.com');
+
+			// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+			// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+			$mail->isHTML(true);                                  // Set email format to HTML
+
+			$mail->Subject = 'Here is the subject';
+			$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			if(!$mail->send()) {
+			    echo 'Message could not be sent.';
+			    echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+			    echo 'Message has been sent';
 			}
-			else{
-				$message =  "Failed to Recover your password, try again";
-			}
-			echo "<script type='text/javascript'>alert('$message');</script>";
+
+			// echo var_dump($email);
+			// $password = $row[0];
+			// $message = "Please use this password to login ";
+			// $r = mysqli_fetch_assoc($res);
+			// $to = $email;
+			// $subject = "Your Recovered Password";
+			// $result = mail("jaredlincenberg@gmail.com", "test", "Please use this password to login ");
+			// echo var_dump($result);
+			// if(){
+			// 	$message =  "Your Password has been sent to your email id";
+			// }
+			// else{
+			// 	$message =  "Failed to Recover your password, try again";
+			// }
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else{
 			$message = "The user name does not exist!";
