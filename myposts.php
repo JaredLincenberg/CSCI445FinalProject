@@ -3,6 +3,15 @@
 		    session_start();
 	}
 	include 'connect.php';
+	
+	if(array_key_exists('passwordVerified',$_SESSION)){
+	if (!isset($_SESSION["passwordVerified"])) {
+		header("Location: login.php");
+	}
+	}
+	else{
+		header("Location: login.php");
+	}
 ?>
 
 <!DOCTYPE html>

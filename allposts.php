@@ -2,6 +2,15 @@
 if (session_status() == PHP_SESSION_NONE) {
 	    session_start();
 	}
+	
+if(array_key_exists('passwordVerified',$_SESSION)){
+	if (!isset($_SESSION["passwordVerified"])) {
+		header("Location: login.php");
+	}
+}
+else{
+	header("Location: login.php");
+}
 ?>
 
 <!DOCTYPE html>
