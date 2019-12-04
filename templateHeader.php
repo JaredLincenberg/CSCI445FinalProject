@@ -19,9 +19,9 @@ if (session_status() == PHP_SESSION_NONE) {
 		<li class="left-ul-li">
 			<a id="signup" href="signup.php">Sign up</a>
 		</li>
-		<li class="left-ul-li">
+		<!--<li class="left-ul-li">
 			<a id="logout" href="logout_submit.php">Log out</a>		
-		</li>
+		</li>-->
 	</ul>
 </div>
 

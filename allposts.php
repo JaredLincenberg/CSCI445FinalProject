@@ -7,7 +7,8 @@ if(array_key_exists('passwordVerified',$_SESSION)){
 	if (!isset($_SESSION["passwordVerified"])) {
 		header("Location: login.php");
 	}
-	if($_SESSION['last_activity'] < time()-$_SESSION['expire_time']){
+	if(time() - $_SESSION['last_activity'] > $_SESSION['expire_time']){
+		session_destroy();
 		$message = "Your session has expired!";
 		echo "<script type='text/javascript'>alert('$message');</script>";
 		header("Location: login.php");
@@ -16,6 +17,7 @@ if(array_key_exists('passwordVerified',$_SESSION)){
 else{
 	header("Location: login.php");
 }
+$_SESSION['last_activity'] = time();
 ?>
 
 <!DOCTYPE html>

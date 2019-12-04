@@ -7,7 +7,8 @@
 		if (!isset($_SESSION["passwordVerified"])) {
 			header("Location: login.php");
 		}
-		if($_SESSION['last_activity'] < time()-$_SESSION['expire_time']){
+		if(time() - $_SESSION['last_activity'] > $_SESSION['expire_time']){
+			session_destroy();
 			$message = "Your session has expired!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 			header("Location: login.php");
@@ -16,9 +17,10 @@
 	else{
 		header("Location: login.php");
 	}
+	$_SESSION['last_activity'] = time();
+	
+	
 	if (isset($_POST['submit']))  {
-		//Confuse about how to pass the user name or id through login page.
-		//this two lines should be replaced.
 		$firstname = $_SESSION["userfname"];
 		$lastname = $_SESSION["userlname"];
 		$email = $_SESSION["useremail"];
@@ -76,10 +78,24 @@
 	<?php 
 		$path = "";
 		$thisPage = "change_password";
-		include 'templateHeader.php';
 		include 'connect.php';
 	?>
-	
+	<?php 
+	  if (isset($_SESSION["passwordVerified"])) {
+			// echo var_dump($_SESSION);
+			if ($_SESSION["passwordVerified"] == TRUE) {
+				include 'header_afterloggedin.php';
+			}
+			else{
+				include 'templateHeader.php';
+			}
+		}
+		else{
+			include 'templateHeader.php';
+			header("Location: login.php");
+		}
+	  
+	?>
 	<main>
 		<!-- find password form -->
 		<h2>Change Password</h2>

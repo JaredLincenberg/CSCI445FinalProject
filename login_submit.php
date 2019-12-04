@@ -1,11 +1,11 @@
 <?php
-$_SESSION['last_activity'] = time(); 
-//session expire in n minutes
-$_SESSION['expire_time'] = 1*60; 
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
+$_SESSION['last_activity'] = time(); 
+//session expire in n minutes
+$_SESSION['expire_time'] = 5; 
 if(array_key_exists('passwordVerified',$_SESSION)){
 	if (!isset($_SESSION["passwordVerified"])) {
 		header("Location: login.php");
