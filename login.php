@@ -4,12 +4,10 @@
 	}
 	include 'connect.php';
 	if (isset($_POST['submit']))  {
-		$firstname=$_POST['firstname'];
-		$lastname=$_POST['lastname'];
 		$email = $_POST['email'];
 		$password=$_POST['password'];
 		
-		$querycheck="SELECT password, userID FROM USERS WHERE Email=?";
+		$querycheck="SELECT password, userID, FirstName, LastName FROM USERS WHERE Email=?";
 		$stmt = $mysqli->prepare( $querycheck );
 		$stmt->bind_param( "s", $emai);
 		$emai = $email;
@@ -20,8 +18,8 @@
 			$hash = $row[0];
 			$valid = password_verify ( $password, $hash );
 			if($valid){
-				$_SESSION["userfname"] = $firstname;
-				$_SESSION["userlname"] = $lastname;
+				$_SESSION["userfname"] = $row[2];
+				$_SESSION["userlname"] = $row[3];
 				$_SESSION["useremail"] = $email;
 				$_SESSION["userID"] = $row[1];
 				$_SESSION["passwordVerified"] = $valid;
