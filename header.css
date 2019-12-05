@@ -45,7 +45,9 @@ ul li{
 
 /* Search Bar Navigation*/
 #searchform{
+  float: right;
 	display: inline;
+  margin-top: 5px;
 	margin-right: 5px;
 }
 
@@ -144,6 +146,7 @@ nav a:hover, .dropdown:hover .dropbtn {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 
 /* Log In Style */
 form#log-in{
