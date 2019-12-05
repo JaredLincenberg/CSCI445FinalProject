@@ -111,7 +111,7 @@ function getPostCommentsAndLikes($postID,$Limit = 20,$Offset = 0 )
 	while ($row = mysqli_fetch_array($res)) {
 		// echo var_dump($row);
 		echo "<tr>";
-		echo "<td>" . $row["email"] . "</td>";
+		//echo "<td>" . $row["email"] . "</td>";
 		echo "<td>" . $row["Content"] . "</td>";
 		echo "<td>" . $row["TimeCreated"] . "</td>";
 		echo "</tr>";

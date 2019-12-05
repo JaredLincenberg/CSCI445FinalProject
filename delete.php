@@ -1,9 +1,24 @@
 <?php
 	include 'connect.php';
 	$postid = $_GET['id'];
-	$queryupdate = "DELETE FROM comments WHERE postID=?; DELETE FROM likes WHERE postID=?; DELETE FROM POSTS WHERE postID= ? ;";
+	echo $postid;
+	$queryupdate = "DELETE FROM comments WHERE postID=?;";
 	$stmt5 = $mysqli->prepare( $queryupdate );
-	$stmt5->bind_param( "iii", $pid, $pid, $pid );
+	$stmt5->bind_param( "i", $pid );
+	$pid = $postid;
+	$stmt5->execute();
+	$stmt5->close();
+	
+	$queryupdate = "DELETE FROM likes WHERE postID=?; ";
+	$stmt5 = $mysqli->prepare( $queryupdate );
+	$stmt5->bind_param( "i", $pid );
+	$pid = $postid;
+	$stmt5->execute();
+	$stmt5->close();
+	
+	$queryupdate = "DELETE FROM POSTS WHERE postID= ? ;";
+	$stmt5 = $mysqli->prepare( $queryupdate );
+	$stmt5->bind_param( "i", $pid);
 	$pid = $postid;
 	$stmt5->execute();
 	$stmt5->close();
