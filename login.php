@@ -8,6 +8,7 @@
 		$password=$_POST['password'];
 		
 		$querycheck="SELECT password, userID, FirstName, LastName FROM USERS WHERE Email=?";
+
 		$stmt = $mysqli->prepare( $querycheck );
 		$stmt->bind_param( "s", $emai);
 		$emai = $email;
