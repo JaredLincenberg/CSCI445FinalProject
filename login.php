@@ -9,12 +9,9 @@
 		$email = $_POST['email'];
 		$password=$_POST['password'];
 		
-		$querycheck="SELECT password, userID FROM USERS WHERE FirstName=? AND LastName=? AND Email=?";
+		$querycheck="SELECT password, userID FROM USERS WHERE Email=?";
 		$stmt = $mysqli->prepare( $querycheck );
-		$stmt->bind_param( "sss", $fname, $lname, $emai);
-		$fname = $firstname;
-		$lname = $lastname;
-		$emai = $email;
+		$stmt->bind_param( "s", $email);
 		$stmt->execute();
 		$res = $stmt->get_result();
 		$row=mysqli_fetch_array($res);
@@ -22,8 +19,6 @@
 			$hash = $row[0];
 			$valid = password_verify ( $password, $hash );
 			if($valid){
-				$_SESSION["userfname"] = $firstname;
-				$_SESSION["userlname"] = $lastname;
 				$_SESSION["useremail"] = $email;
 				$_SESSION["userID"] = $row[1];
 				$_SESSION["passwordVerified"] = $valid;
@@ -70,15 +65,6 @@
 		<h2>Log in</h2>
 		<form class="entry-form" id="log-in"  method="post">
 			<fieldset class="user-id-form">
-				<label for="FirstName"> First Name
-					<input type="text" name="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
-				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>">
-				</label><br>
-
-				<label for="LastName"> Last Name
-					<input type="text" name="lastname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only" required value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'];?>">
-				</label><br>
-
 				<label for="Email"> Email
 					<input type="email" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
 					value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
