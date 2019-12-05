@@ -6,7 +6,7 @@
 	if (isset($_POST['submit']))  {
 		$email = $_POST['email'];
 		$password=$_POST['password'];
-		if $email == $_GET["email"]{
+		if ($email == $_GET["email"]){
 		
 			$querycheck="SELECT password, userID, FirstName, LastName FROM USERS WHERE Email=?";
 
@@ -47,7 +47,7 @@
 		} else {
 			$valid = false;
 			$message = "Please only verify your email.";
-			echo "<script type='text/javascript'>alert('$message');</script>"
+			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 	}
 	

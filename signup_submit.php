@@ -65,7 +65,9 @@
 		$mail->Port = 25;                                    // TCP port to connect to
 
 		$mail->setFrom('VerifyAccount@mines.edu', 'Verify Account');
-		$mail->addAddress($email , $fname . ' ' . $lname);     // Add a recipient
+
+
+		$mail->addAddress($email, $firstName . ' ' . $lastName);     // Add a recipient
 		// $mail->addAddress('ellen@example.com');               // Name is optional
 		// $mail->addReplyTo('info@example.com', 'Information');
 		// $mail->addCC('cc@example.com');
@@ -86,7 +88,8 @@
 
 		$mail->Subject = 'Verify Account';
 		$mail->Body    = 'Please verify your account by logging into this web page: <br>' . '<a href="' . $_SERVER['HTTP_HOST'] . $c . 'verify.php?email='. $email .'">link</a>';
-		$mail->AltBody = 'Please verify your account by logging into this web page';
+
+		$mail->AltBody = 'Please verify your account by logging into this web page' . $_SERVER['HTTP_HOST'] . $c . 'verify.php?email='. $email;
 
 		// echo var_dump('Please verify your account by logging into this web page: ' . '<a href=' . $_SERVER[HTTP_HOST] . $c . "verify.php?email=". $email ."\">link</a>");
 		// echo var_dump($_SERVER['REQUEST_URI']);

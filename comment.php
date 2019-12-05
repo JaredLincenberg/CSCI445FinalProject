@@ -62,7 +62,7 @@
 		<form class="entry-form" id="write-comment" method="post">
 			<fieldset class="user-id-form">
 			<label for="content" >Comment</label>
-			<textarea name="comment" style="width:80%;margin-left:10%;" pattern="[A-Za-z '.,?;:!"]{1,300}" name="content" rows="10" cols="30" 
+			<textarea name="comment" style="width:80%;margin-left:10%;" name="content" rows="10" cols="30" id="content"
 			title="Letters, spaces, and punctuation only."><?php if(isset($_POST['comment'])) echo $_POST['comment'];?></textarea>
 			<br>
 			</fieldset>

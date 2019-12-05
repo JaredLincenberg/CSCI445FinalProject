@@ -141,6 +141,8 @@ function getPost($postID, $Limit = 20, $Offset = 0)
 		if($row['userID'] == $_SESSION['userID']){
 			echo '<td><input type="button" name="edit" value="edit"></td>';
 		}
+		echo '<td><a href=\'comment.php?pid='.$row['postID'].'&uid='.$userid.'\' class="comment" id="' . $row['postID'] . '">Comment</a></td>';
+
 		echo "</tr>";
 	}
 

@@ -110,7 +110,7 @@ $_SESSION['last_activity'] = time();
 				echo "<td>" . $row["Content"] . "</td>";
 				echo "<td>" . $row["TimeCreated"] . "</td>";
 				echo '<td><a href=\'comment.php?pid='.$row['postID'].'&uid='.$userid.'\' class="comment" id="' . $row['postID'] . '">Comment</a></td>';
-				echo '<td><a href=\'like.php?pid='.$row['postID'].'&uid='.$userid.'\' class="like" id="' . $row['postID'] . '">Like</a></td>';
+				echo '<td><a href=\'like.php?pid='.$row['postID'].'&uid='.$userid.'\' class="like" id="like' . $row['postID'] . '">Like</a></td>';
 				echo "</tr>";
 				
 			}
@@ -122,7 +122,7 @@ $_SESSION['last_activity'] = time();
 				
 				echo "<script>";
 					echo "var id = toString(" . $row['postID'] . ");";
-					echo '$("#"+id).text("Unlike");';
+					echo '$("#like"+id).text("Unlike");';
 				echo "</script>";
 				
 			}

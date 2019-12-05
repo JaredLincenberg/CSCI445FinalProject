@@ -1,14 +1,15 @@
+<link rel="stylesheet" type="text/css" href="header.css" />
 <!--log in bar-->
 <div id="top-nav" style="background-color:lightBlue">
 	
 	<form id="searchform" method="GET">
-		<label for="search" style="color:black">Search</label>
+		<label for="search" style="color:red">Search</label>
 		<input id="search" name="search" type="text" value="" maxlength="150">
 		<input type="submit" id="search-button" value="Search">
 	</form>
 
 	<ul id="left-ul" style="list-style-type:none">
-		<li id="name"><?php echo $_SESSION["userfname"] ." ". $_SESSION["userlname"]. "  ";?>/li>
+		<li id="name"><?php echo $_SESSION["userfname"] ." ". $_SESSION["userlname"]. "  ";?></li>
 		<li class="left-ul-li">
 			<a id="logout" href="logout_submit.php">Log out</a>		
 		</li>
