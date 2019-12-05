@@ -53,6 +53,7 @@ if ($mysqli->connect_errno) {
 				echo '<p class="tab" style="color:darkGreen;">Click here to <a style="color:red" href="login.php">log in</a>.</p>';
 				echo '<p class="tab" style="color:darkGreen;">Go back to <a style="color:red" href="index.php">home page</a>.</p><br>';
 			}
+			header("Location: index.php");
 			
 		?>
 		
