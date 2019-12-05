@@ -61,10 +61,10 @@
 				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>">
 				</label><br>
 
-				<label for="content" >Content</label>
+				<label for="content" >Content
 				<textarea style="width:80%;margin-left:10%;" name="content" rows="10" cols="30" 
 				title="Letters, spaces, and punctuation only." id="content"><?php if(isset($_POST['content'])) echo $_POST['content'];?></textarea>
-				<br>
+				</label><br>
 				</fieldset>
 				<fieldset>
 					<?php date_default_timezone_set("America/Denver");?>
