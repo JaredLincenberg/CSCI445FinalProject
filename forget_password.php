@@ -18,6 +18,23 @@
 		if(!is_null($row[0])) {
 			require 'PHPMailer/PHPMailerAutoload.php';
 
+			$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+			$randomString = ''; 
+		  
+			for ($i = 0; $i < $n; $i++) { 
+				$index = rand(0, strlen($characters) - 1); 
+				$randomString .= $characters[$index]; 
+			} 
+		  
+			$options = ['cost' => 12,];
+			$hashpassword = password_hash($randomString, PASSWORD_BCRYPT, $options );	
+			$queryupdate = "UPDATE USERS SET Password = '" .$hashpassword. "' WHERE FirstName = ? AND LastName = ?";
+			$stmt2 = $mysqli->prepare( $queryupdate );
+			$stmt2->bind_param( "ss", $firstname, $lastname );
+			$stmt2->execute();
+			$stmt2->close();	
+			
+
 			$mail = new PHPMailer;
 			// $mail->SMTPDebug = 3;                               // Enable verbose debug output
 
@@ -29,8 +46,8 @@
 			// $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 			$mail->Port = 587;                                    // TCP port to connect to
 
-			$mail->setFrom('from@example.com', 'Mailer');
-			$mail->addAddress('jaredlincenberg@mymail.mines.edu', 'Joe User');     // Add a recipient
+			$mail->setFrom('password@miner.com', 'Password');
+			$mail->addAddress($email, $firstname . ' ' . $lastname);     // Add a recipient
 			// $mail->addAddress('ellen@example.com');               // Name is optional
 			// $mail->addReplyTo('info@example.com', 'Information');
 			// $mail->addCC('cc@example.com');
@@ -40,8 +57,8 @@
 			// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 			$mail->isHTML(true);                                  // Set email format to HTML
 
-			$mail->Subject = 'Here is the subject';
-			$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+			$mail->Subject = 'Password Reset';
+			$mail->Body    = 'Your new password is ' . $randomString;
 			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 			if(!$mail->send()) {
