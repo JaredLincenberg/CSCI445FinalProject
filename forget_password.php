@@ -18,9 +18,9 @@
 		if(!is_null($row[0])) {
 			require 'PHPMailer/PHPMailerAutoload.php';
 
-			$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
+			$characters = '123456789abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ'; 
 			$randomString = ''; 
-		  
+		  	$n = 10;
 			for ($i = 0; $i < $n; $i++) { 
 				$index = rand(0, strlen($characters) - 1); 
 				$randomString .= $characters[$index]; 
@@ -37,16 +37,16 @@
 
 			$mail = new PHPMailer;
 			// $mail->SMTPDebug = 3;                               // Enable verbose debug output
-
+			$mail->SMTPDebug = 0;
 			$mail->isSMTP();                                      // Set mailer to use SMTP
-			$mail->Host = 'smtp.sendgrid.net';  				// Specify main and backup SMTP servers
-			$mail->SMTPAuth = true;                               // Enable SMTP authentication
-			$mail->Username = 'apikey';                 // SMTP username
-			$mail->Password = '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'; // SMTP password
-			$mail->SMTPSecure = 'tls';                         // Enable TLS encryption, `ssl` also accepted
-			$mail->Port = 587;                                    // TCP port to connect to
+			$mail->Host = 'smtp.mines.edu';  				// Specify main and backup SMTP servers
+			// $mail->SMTPAuth = true;                               // Enable SMTP authentication
+			// $mail->Username = 'apikey';                 // SMTP username
+			// $mail->Password = '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'; // SMTP password
+			// $mail->SMTPSecure = 'tls';                         // Enable TLS encryption, `ssl` also accepted
+			$mail->Port = 25;                                    // TCP port to connect to
 
-			$mail->setFrom('from@example.com', 'Password');
+			$mail->setFrom('FinalProjectPasswordReset@mines.edu', 'Password_Manager');
 			$mail->addAddress($email, $firstname . ' ' . $lastname);     // Add a recipient
 			// $mail->addAddress('ellen@example.com');               // Name is optional
 			// $mail->addReplyTo('info@example.com', 'Information');
