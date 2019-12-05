@@ -116,14 +116,14 @@
 			<fieldset class="user-id-form">
 				<label for="FirstName"> First Name
 					<input type="text" name="firstname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only"
-				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>">
+				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>" id="FirstName">
 				</label><br>
 
 				<label for="LastName"> Last Name
-					<input type="text" name="lastname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only" required value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'];?>">
+					<input type="text" name="lastname" pattern="[A-Za-z ']{1,50}" title="Letters, spaces, and apostrophes only" required value="<?php if(isset($_POST['lastname'])) echo $_POST['lastname'];?>" id="LastName">
 				</label><br>
 
-				<label for="Email"> Email
+				<label for="email"> Email
 					<input type="email" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
 					value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
 				</label><br>
