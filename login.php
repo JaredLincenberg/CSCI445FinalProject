@@ -9,7 +9,7 @@
 		$email = $_POST['email'];
 		$password=$_POST['password'];
 		
-		$querycheck="SELECT password, userID FROM USERS WHERE Email=?";
+		$querycheck="SELECT password, userID, firstname, lastname FROM USERS WHERE Email=?";
 		$stmt = $mysqli->prepare( $querycheck );
 		$stmt->bind_param( "s", $emai);
 		$emai = $email;
@@ -20,8 +20,8 @@
 			$hash = $row[0];
 			$valid = password_verify ( $password, $hash );
 			if($valid){
-				$_SESSION["userfname"] = $firstname;
-				$_SESSION["userlname"] = $lastname;
+				$_SESSION["userfname"] = $row[2];
+				$_SESSION["userlname"] = $row[3];
 				$_SESSION["useremail"] = $email;
 				$_SESSION["userID"] = $row[1];
 				$_SESSION["passwordVerified"] = $valid;
