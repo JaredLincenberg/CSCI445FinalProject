@@ -69,11 +69,11 @@
 			<fieldset class="user-id-form">
 				<label for="Email"> Email
 					<input type="email" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
-					value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
+					value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" id="email">
 				</label><br>
 
 				<label for="password"> Password
-					<input type="password" name="password" required="required">
+					<input type="password" name="password" required="required" id="password">
 				</label><br>
 
 				

@@ -121,9 +121,8 @@ $_SESSION['last_activity'] = time();
 			while($row = mysqli_fetch_array($result)){
 				
 				echo "<script>";
-					echo "var id = " . $row['postID'] . ";";
-					echo 'var pound = "#";';
-					echo "$(pound.concat(toString(id))).text(\"Unlike\");";
+					echo "var id = toString(" . $row['postID'] . ");";
+					echo '$("#"+id).text("Unlike");';
 				echo "</script>";
 				
 			}
