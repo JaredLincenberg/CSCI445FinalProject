@@ -4,12 +4,11 @@
 	}
 	include 'connect.php';
 	if (isset($_POST['submit']))  {
-		$firstname=$_POST['firstname'];
-		$lastname=$_POST['lastname'];
 		$email = $_POST['email'];
 		$password=$_POST['password'];
 		
-		$querycheck="SELECT password, userID, firstname, lastname FROM USERS WHERE Email=?";
+		$querycheck="SELECT password, userID, FirstName, LastName FROM USERS WHERE Email=?";
+
 		$stmt = $mysqli->prepare( $querycheck );
 		$stmt->bind_param( "s", $emai);
 		$emai = $email;
