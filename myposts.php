@@ -99,7 +99,7 @@ function getPosts($userID, $Limit = 20, $Offset = 0)
 	$rid = 1;
 	while ($row = mysqli_fetch_array($res)) {
 		echo "<tr>";
-		echo "<td><a href=\"mypost.php?postID=".$row["postID"] . "\">" . $row["Title"] . "</a></td>";
+		echo "<td><a href=\"post.php?postID=".$row["postID"] . "\">" . $row["Title"] . "</a></td>";
 		echo "<td>" . $row["Content"] . "</td>";
 		echo "<td>" . $row["TimeCreated"] . "</td>";
 		echo "<td><a href=\"delete.php?id=".$row["postID"]."\">Delete</a></td>";

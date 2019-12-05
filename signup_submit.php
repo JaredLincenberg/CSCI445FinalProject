@@ -1,6 +1,9 @@
 <?php
 	include 'connect.php';
 	//TODO: handle case if user direct to this page without sign up.
+	if (!isset($_POST['firstname']))  {
+		header("Location: login.php");
+	}
 	
 	$firstName = $_POST['firstname'];
 	$lastName = $_POST['lastname'];
@@ -11,7 +14,6 @@
 	];
 	$password = password_hash($_POST["password"], PASSWORD_BCRYPT, $options );	
 
-	include 'connect.php';
 
 	/* check connection */
 	if ($mysqli->connect_errno) {
