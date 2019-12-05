@@ -42,11 +42,11 @@
 			$mail->Host = 'smtp.sendgrid.net';  				// Specify main and backup SMTP servers
 			$mail->SMTPAuth = true;                               // Enable SMTP authentication
 			$mail->Username = 'apikey';                 // SMTP username
-			$mail->Password = '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';                           // SMTP password
-			// $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->Password = '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'; // SMTP password
+			$mail->SMTPSecure = 'tls';                         // Enable TLS encryption, `ssl` also accepted
 			$mail->Port = 587;                                    // TCP port to connect to
 
-			$mail->setFrom('password@miner.com', 'Password');
+			$mail->setFrom('from@example.com', 'Password');
 			$mail->addAddress($email, $firstname . ' ' . $lastname);     // Add a recipient
 			// $mail->addAddress('ellen@example.com');               // Name is optional
 			// $mail->addReplyTo('info@example.com', 'Information');
@@ -59,7 +59,7 @@
 
 			$mail->Subject = 'Password Reset';
 			$mail->Body    = 'Your new password is ' . $randomString;
-			$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+			$mail->AltBody = 'Your new password is ' . $randomString;;
 
 			if(!$mail->send()) {
 			    echo 'Message could not be sent.';
