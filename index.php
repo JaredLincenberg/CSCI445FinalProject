@@ -57,13 +57,13 @@
 			 <form class="entry-form" id="write-post"  action="post_submit.php" method="post">
 				<fieldset class="user-id-form">
 				<label for="title"> Title
-					<input type="text" name="title" pattern="[A-Za-z ']{1,50}" title="Letters, spaces only."
+					<input type="text" name="title" title="Letters, spaces only." id="title"
 				required value="<?php if(isset($_POST['firstname'])) echo $_POST['firstname'];?>">
 				</label><br>
 
 				<label for="content" >Content</label>
-				<textarea style="width:80%;margin-left:10%;" pattern="[A-Za-z '.,?;:!"]{1,300}" name="content" rows="10" cols="30" 
-				title="Letters, spaces, and punctuation only."><?php if(isset($_POST['content'])) echo $_POST['content'];?></textarea>
+				<textarea style="width:80%;margin-left:10%;" name="content" rows="10" cols="30" 
+				title="Letters, spaces, and punctuation only." id="content"><?php if(isset($_POST['content'])) echo $_POST['content'];?></textarea>
 				<br>
 				</fieldset>
 				<fieldset>

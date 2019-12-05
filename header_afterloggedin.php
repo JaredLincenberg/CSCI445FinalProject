@@ -8,7 +8,7 @@
 	</form>
 
 	<ul id="left-ul" style="list-style-type:none">
-		<span style="color:blue; padding-right:12px;"><?php echo $_SESSION["userfname"] ." ". $_SESSION["userlname"]. "  ";?></span>
+		<li id="name"><?php echo $_SESSION["userfname"] ." ". $_SESSION["userlname"]. "  ";?>/li>
 		<li class="left-ul-li">
 			<a id="logout" href="logout_submit.php">Log out</a>		
 		</li>

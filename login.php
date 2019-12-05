@@ -7,7 +7,7 @@
 		$email = $_POST['email'];
 		$password=$_POST['password'];
 		
-		$querycheck="SELECT password, userID, FirstName, LastName FROM USERS WHERE Email=?";
+		$querycheck="SELECT password, userID, FirstName, LastName, Verified FROM USERS WHERE Email=?";
 
 		$stmt = $mysqli->prepare( $querycheck );
 		$stmt->bind_param( "s", $emai);
@@ -15,7 +15,7 @@
 		$stmt->execute();
 		$res = $stmt->get_result();
 		$row=mysqli_fetch_array($res);
-		if(!is_null($row[0])) {
+		if(!is_null($row[0]) && $row["Verified"]) {
 			$hash = $row[0];
 			$valid = password_verify ( $password, $hash );
 			if($valid){
@@ -30,6 +30,11 @@
 				$message = "The password is incorrect!";
 				echo "<script type='text/javascript'>alert('$message');</script>";
 			}
+		}
+		elseif (isset($row["Verified"]) && !$row["Verified"]) {
+			$valid = false;
+			$message = "Please find the verification email and verify the account.";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else{
 			$valid = false;
@@ -69,11 +74,11 @@
 			<fieldset class="user-id-form">
 				<label for="Email"> Email
 					<input type="email" name="email" id="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" 
-					value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>">
+					value="<?php if(isset($_POST['email'])) echo $_POST['email'];?>" id="email">
 				</label><br>
 
 				<label for="password"> Password
-					<input type="password" name="password" required="required">
+					<input type="password" name="password" required="required" id="password">
 				</label><br>
 
 				
