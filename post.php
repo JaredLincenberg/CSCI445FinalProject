@@ -119,7 +119,7 @@ function getPostCommentsAndLikes($postID,$Limit = 20,$Offset = 0 )
 	// echo var_dump(mysqli_fetch_array($res2));
 }
 
-function getPost($postID, $Limit = 20, $Offset = 0, $userid)
+function getPost($postID, $userid, $Limit = 20, $Offset = 0)
 {
 	// Connect and query sever
 	include 'connect.php';
