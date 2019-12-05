@@ -51,6 +51,8 @@
 		$stmt2->execute();
 		$stmt2->close();
 
+		require 'PHPMailer/PHPMailerAutoload.php';
+
 		$mail = new PHPMailer;
 		// $mail->SMTPDebug = 3;                               // Enable verbose debug output
 		$mail->SMTPDebug = 0;
@@ -72,11 +74,27 @@
 		// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
 		// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 		$mail->isHTML(true);                                  // Set email format to HTML
+		$e = explode('/',$_SERVER['REQUEST_URI']);
+		$c = "";
+		foreach ($e as $key => $value) {
+			if (end($e)!=$value) {
+				$c .=  $value . "/" ;
+			}
+			
+		}
 
 		$mail->Subject = 'Verify Account';
-		$mail->Body    = 'Please verify your account by logging into this web page' . $randomString;
-		$mail->AltBody = 'Your new password is ' . $randomString;;
+		$mail->Body    = 'Please verify your account by logging into this web page: <br>' . '<a href="' . $_SERVER[HTTP_HOST] . $c . 'verify.php?email='. $email .'">link</a>';
+		$mail->AltBody = 'Please verify your account by logging into this web page' . $randomString;;
 
+		// echo var_dump('Please verify your account by logging into this web page: ' . '<a href=' . $_SERVER[HTTP_HOST] . $c . "verify.php?email=". $email ."\">link</a>");
+		// echo var_dump($_SERVER['REQUEST_URI']);
+		
+		// echo var_dump($e);
+
+		
+		
+		// echo var_dump($c);
 		if(!$mail->send()) {
 		    echo 'Message could not be sent.';
 		    echo 'Mailer Error: ' . $mail->ErrorInfo;
