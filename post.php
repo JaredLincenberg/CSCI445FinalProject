@@ -117,6 +117,34 @@ function getPostCommentsAndLikes($postID,$Limit = 20,$Offset = 0 )
 		echo "</tr>";
 	}
 	// echo var_dump(mysqli_fetch_array($res2));
+	$querycheck="SELECT * FROM `likes` WHERE postID = ? ORDER BY TimeCreated DESC LIMIT ?, ?";
+	$stmt = $mysqli->prepare( $querycheck );
+	$stmt->bind_param( "iii", $pID, $Off, $lim);
+	$pID = $postID;
+	$Off = $Offset;
+	$lim = $Limit;
+	$stmt->execute();
+	$res = $stmt->get_result();
+	
+	echo "<tr>";
+		echo "<td>" . $row[""] . "</td>";
+		echo "<td>" . $row["Content"] . "</td>";
+	// Display Post information
+	while ($row = mysqli_fetch_array($res)) {
+		$querycheck="SELECT firstname, Lastname FROM USERS WHERE userID = ?";
+		$stmt3 = $mysqli->prepare( $querycheck );
+		$stmt3->bind_param( "i", $uid);
+		$uid = $row["userID"];
+		$stmt3->execute();
+		$res3 = $stmt3->get_result();
+		$res4=mysqli_fetch_array($res3);
+		//echo var_dump($res4);
+		echo "<tr>";
+		echo "<td>" . $res4[0]. " ".$res4[1] . "</td>";
+		echo "<td>" . "like+1" . "</td>";
+		echo "<td>" . $row["TimeCreated"] . "</td>";
+		echo "</tr>";
+	}
 }
 
 function getPost($postID, $userid, $Limit = 20, $Offset = 0)
@@ -145,6 +173,7 @@ function getPost($postID, $userid, $Limit = 20, $Offset = 0)
 
 		echo "</tr>";
 	}
+	
 
 }
 
