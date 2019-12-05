@@ -109,7 +109,7 @@ $_SESSION['last_activity'] = time();
 				echo "<td>" . $row2["FirstName"] . " ". $row2["LastName"] . "</td>";
 				echo "<td>" . $row["Content"] . "</td>";
 				echo "<td>" . $row["TimeCreated"] . "</td>";
-				echo '<td><input type="button" name="comment" value="comment"></td>';
+				echo '<td><a href=\'comment.php?pid='.$row['postID'].'&uid='.$userid.'\' class="comment" id="' . $row['postID'] . '">Comment</a></td>';
 				echo '<td><a href=\'like.php?pid='.$row['postID'].'&uid='.$userid.'\' class="like" id="' . $row['postID'] . '">Like</a></td>';
 				echo "</tr>";
 				
@@ -121,9 +121,8 @@ $_SESSION['last_activity'] = time();
 			while($row = mysqli_fetch_array($result)){
 				
 				echo "<script>";
-					echo "var id = " . $row['postID'] . ";";
-					echo "var pound = '\#\'";
-					echo "$(pound.concat(toString(id))).html(\"Unlike\");";
+					echo "var id = toString(" . $row['postID'] . ");";
+					echo '$("#"+id).text("Unlike");';
 				echo "</script>";
 				
 			}

@@ -191,3 +191,8 @@ fieldset.user-id-form label{
 	width: 88%;
   }
 }
+
+#name{
+  color:blue; 
+  padding-right:12px;
+}

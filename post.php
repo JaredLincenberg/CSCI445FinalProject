@@ -43,7 +43,7 @@
 				<thead>
 				<tr>
 					<th>Title</th>
-					<th>Content</td>
+					<th>Content</th>
 					<th>Time Posted</th>
 				</tr>
 				</thead>
@@ -58,7 +58,7 @@
 				<thead>
 				<tr>
 					<th>From</th>
-					<th>Comment</td>
+					<th>Comment</th>
 					<th>Time Posted</th>
 				</tr>
 				</thead>
