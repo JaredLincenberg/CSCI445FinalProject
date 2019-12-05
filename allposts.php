@@ -27,6 +27,7 @@ $_SESSION['last_activity'] = time();
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="header.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
 </head>
 <body>
 	<?php 
@@ -68,7 +69,7 @@ $_SESSION['last_activity'] = time();
 				?>
 				</tbody>
 			</table>
-		 	<p>Loggedin</p>
+
 		<?php else: ?>
 			<!-- User has failed to Logged In successfully -->
 			<p>Please Log in.</p>
@@ -109,9 +110,21 @@ $_SESSION['last_activity'] = time();
 				echo "<td>" . $row["Content"] . "</td>";
 				echo "<td>" . $row["TimeCreated"] . "</td>";
 				echo '<td><input type="button" name="comment" value="comment"></td>';
-				echo "<td><a href=\"like.php?pid=".$row["postID"]."&uid=".$userid."\">Like</a></td>";
+				echo '<td><a href=\'like.php?pid='.$row['postID'].'&uid='.$userid.'\' class="like" id="' . $row['postID'] . '">Like</a></td>';
 				echo "</tr>";
 				
+			}
+
+			$stmt = $mysqli->prepare("SELECT postID FROM `likes` WHERE userID=". $_SESSION['userID']);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			while($row = mysqli_fetch_array($result)){
+				?>
+				<script>
+					var id = <?php $row['postID'];?>;
+					$("#" + toString(id)).html("Unlike");
+				</script>
+				<?php
 			}
 		}
 	?>
