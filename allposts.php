@@ -122,7 +122,8 @@ $_SESSION['last_activity'] = time();
 				
 				echo "<script>";
 					echo "var id = " . $row['postID'] . ";";
-					echo "$(\"#\" + toString(id)).html(\"Unlike\");";
+					echo "var pound = '\#\'";
+					echo "$(pound.concat(toString(id))).html(\"Unlike\");";
 				echo "</script>";
 				
 			}
