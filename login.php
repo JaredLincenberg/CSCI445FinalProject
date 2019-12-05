@@ -11,7 +11,8 @@
 		
 		$querycheck="SELECT password, userID FROM USERS WHERE Email=?";
 		$stmt = $mysqli->prepare( $querycheck );
-		$stmt->bind_param( "s", $email);
+		$stmt->bind_param( "s", $emai);
+		$emai = $email;
 		$stmt->execute();
 		$res = $stmt->get_result();
 		$row=mysqli_fetch_array($res);
@@ -19,6 +20,8 @@
 			$hash = $row[0];
 			$valid = password_verify ( $password, $hash );
 			if($valid){
+				$_SESSION["userfname"] = $firstname;
+				$_SESSION["userlname"] = $lastname;
 				$_SESSION["useremail"] = $email;
 				$_SESSION["userID"] = $row[1];
 				$_SESSION["passwordVerified"] = $valid;
