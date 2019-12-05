@@ -8,7 +8,7 @@
 	$firstName = $_POST['firstname'];
 	$lastName = $_POST['lastname'];
 	$email = $_POST['email'];
-	$message = "You have successfully signed up!";
+	$message = "Please Check Your Email to verify your account.";
 	$options = [
 		'cost' => 12,
 	];
@@ -49,7 +49,41 @@
 		$cemail = $email;
 		$pword = $password;
 		$stmt2->execute();
-		$stmt2->close();  
+		$stmt2->close();
+
+		$mail = new PHPMailer;
+		// $mail->SMTPDebug = 3;                               // Enable verbose debug output
+		$mail->SMTPDebug = 0;
+		$mail->isSMTP();                                      // Set mailer to use SMTP
+		$mail->Host = 'smtp.mines.edu';  				// Specify main and backup SMTP servers
+		// $mail->SMTPAuth = true;                               // Enable SMTP authentication
+		// $mail->Username = 'apikey';                 // SMTP username
+		// $mail->Password = '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'; // SMTP password
+		// $mail->SMTPSecure = 'tls';                         // Enable TLS encryption, `ssl` also accepted
+		$mail->Port = 25;                                    // TCP port to connect to
+
+		$mail->setFrom('VerifyAccount@mines.edu', 'Verify Account');
+		$mail->addAddress($email, $firstname . ' ' . $lastname);     // Add a recipient
+		// $mail->addAddress('ellen@example.com');               // Name is optional
+		// $mail->addReplyTo('info@example.com', 'Information');
+		// $mail->addCC('cc@example.com');
+		// $mail->addBCC('bcc@example.com');
+
+		// $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+		// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+		$mail->isHTML(true);                                  // Set email format to HTML
+
+		$mail->Subject = 'Verify Account';
+		$mail->Body    = 'Please verify your account by logging into this web page' . $randomString;
+		$mail->AltBody = 'Your new password is ' . $randomString;;
+
+		if(!$mail->send()) {
+		    echo 'Message could not be sent.';
+		    echo 'Mailer Error: ' . $mail->ErrorInfo;
+		} else {
+		    echo 'Message has been sent';
+		}
+
 	}
 
 	/* close connection */
