@@ -49,7 +49,7 @@
 				</thead>
 				<tbody>
 				<?php 
-					getPost($_GET["postID"]);
+					getPost($_GET["postID"], $_SESSION['userID']);
 				?>
 				</tbody>
 			</table>
@@ -111,7 +111,7 @@ function getPostCommentsAndLikes($postID,$Limit = 20,$Offset = 0 )
 	while ($row = mysqli_fetch_array($res)) {
 		// echo var_dump($row);
 		echo "<tr>";
-		echo "<td>" . $row["userID"] . "</td>";
+		echo "<td>" . $row["email"] . "</td>";
 		echo "<td>" . $row["Content"] . "</td>";
 		echo "<td>" . $row["TimeCreated"] . "</td>";
 		echo "</tr>";
@@ -119,7 +119,7 @@ function getPostCommentsAndLikes($postID,$Limit = 20,$Offset = 0 )
 	// echo var_dump(mysqli_fetch_array($res2));
 }
 
-function getPost($postID, $Limit = 20, $Offset = 0)
+function getPost($postID, $Limit = 20, $Offset = 0, $userid)
 {
 	// Connect and query sever
 	include 'connect.php';
