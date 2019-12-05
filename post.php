@@ -138,7 +138,9 @@ function getPost($postID, $Limit = 20, $Offset = 0)
 		echo "<td>" . $row["Title"] . "</td>";
 		echo "<td>" . $row["Content"] . "</td>";
 		echo "<td>" . $row["TimeCreated"] . "</td>";
-		echo '<td><input type="button" name="edit" value="edit"></td>';
+		if($row['userID'] == $_SESSION['userID']){
+			echo '<td><input type="button" name="edit" value="edit"></td>';
+		}
 		echo "</tr>";
 	}
 
