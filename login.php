@@ -10,7 +10,7 @@
 		$querycheck="SELECT password, userID, FirstName, LastName, Verified FROM USERS WHERE Email=?";
 
 		$stmt = $mysqli->prepare( $querycheck );
-		$stmt->bind_param( "s", $emai);
+		$stmt->bind_param( "s", $email);
 		$emai = $email;
 		$stmt->execute();
 		$res = $stmt->get_result();
